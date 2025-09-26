@@ -1,6 +1,10 @@
 @extends('admin.temp')
 @section('admin')
-    <div style="background: url('{{ asset('asset/nedusi.jpg') }}') no-repeat center center; 
+    <div class="container-fluid">
+        
+    </div>
+    <div style="background: url('{{ asset('asset/'.$sch->foto) }}')
+            no-repeat center center; 
             background-size: cover; 
             width: 100%; 
             display: flex; 
@@ -35,7 +39,7 @@
                     width: 100%;
                     background-color: rgb(237, 63, 39);
                     border: 3px solid black;">
-                <div class="rounded-5 d-flex flex-column justify-content-center py-3 px-5"
+                <div class="rounded-top-5 d-flex flex-column justify-content-center py-3 px-5"
                      style="background-color: rgb(19, 70, 134);">
                     <div class="row">
                         <div class="col-12 col-md-2 d-flex justify-content-center mb-3">
@@ -52,16 +56,17 @@
                         <div class="col-md-4 mt-3 mt-md-0">
                             <div style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">
                                 <h5 class="fw-bold mb-3">Informasi Sekolah</h5>
-                                <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>{{ $sch->alamat }}</p>
-                                <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>{{ $sch->kontak }}</p>
+                                <p class="mb-1"><i class="fas fa-chalkboard-teacher"></i> Jumlah guru: </p>
+                                <p class="mb-1"><i class="fas fa-users"></i> Jumalh siswa:</p>
                                 <p class="mb-0"><i class="fa-solid fa-school"></i> {{ $sch->nspn }}</p>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="btn my-3 gepeng hovera" style="background-color: rgb(237, 63, 39);">Ubah</a>
+                    <a href="#" class="btn my-3 gepeng hovera" style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26); background-color: rgb(237, 63, 39); font-weight: bold;">Ubah</a>
                 </div>
                 <div class="px-5">
-                    <h4 class="my-3 lonjong hovera">
+                    <h4 class="my-3 lonjong hovera"
+                        style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26); background-color: rgb(237, 63, 39); font-weight: bold;">
                         Lokasi sekolah
                     </h4>
                     <img src="{{ asset('asset/'.$sch->ft_lokasi) }}" alt="" style="width: 100%; margin-bottom: 40px;" class="rounded-4">

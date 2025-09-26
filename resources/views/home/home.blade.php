@@ -23,11 +23,10 @@
             background-color: rgb(253, 244, 227);">
         <div class="container py-4" 
              style="height: fit-content;">
-            <h2 style="font-weight: bold;
+            <h2 class="text-model"
+                style="font-weight: bold;
                     padding-top: 5px;
-                    margin-right: 40px;
-                    text-shadow: 3px 3px 4px rgb(254, 178, 26);
-                    color: rgb(237, 63, 39);">
+                    margin-right: 40px;">
                 Sambutan kepala sekolah
             </h2>
             <div class="rounded-5" 
@@ -45,12 +44,12 @@
                                 border: 5px solid rgb(254, 178, 26);">
                         </div>
                         <div class="col-12 col-md-6">
-                            <h3 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $temp->kepsek }}</h3><br>
-                            <h6 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $temp->nama }} adalah sekolah negeri berakreditasi A di Singaparna, Tasikmalaya.
+                            <h3 class="text-style">{{ $temp->kepsek }}</h3><br>
+                            <h6 class="text-style">{{ $temp->nama }} adalah sekolah negeri berakreditasi A di Singaparna, Tasikmalaya.
                                 Didirikan tahun {{ $temp->thn_berdiri }}, sekolah ini berkomitmen mencetak generasi cerdas dan berakhlak mulia.</h6>
                         </div>
                         <div class="col-md-4 mt-3 mt-md-0">
-                            <div style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">
+                            <div class="text-style">
                                 <h5 class="fw-bold mb-3">Informasi Sekolah</h5>
                                 <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>{{ $temp->alamat }}</p>
                                 <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>{{ $temp->kontak }}</p>
@@ -60,9 +59,7 @@
                     </div>
                 </div>
                 <div class="px-5">
-                    <h4 class="mt-3" 
-                        style="color: rgb(254, 178, 26);
-                            text-shadow: 2px 2px 3px rgb(19, 70, 134);">
+                    <h4 class="mt-3 text-color">
                         Tenaga kerja
                     </h4>
                 </div>
@@ -74,7 +71,7 @@
          style="background-color: rgb(19, 70, 134);
             height: fit-content;">
         <div class="container text-center">
-            <h3 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">Ekstrakurikuler</h3>
+            <h3 class="text-style">Ekstrakurikuler</h3>
 
         </div>
     </div>
@@ -83,7 +80,7 @@
          style="background-color: rgb(253, 244, 227);
             height: fit-content;">
         <div class="container text-center">
-            <h3 style="color: rgb(237, 63, 39); text-shadow: 2px 2px 4px rgb(254, 178, 26);">Berita sekolah</h3>
+            <h3 class="text-model">Berita sekolah</h3>
 
         </div>
     </div>

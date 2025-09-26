@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SchollController;
 use App\Http\Controllers\UserController;
 
@@ -9,6 +10,7 @@ Route::get('/', [SchollController::class,'index']);
 
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [UserController::class,'index'])->name('admin');
+    Route::get('/guru',[GuruController::class,'guru'])->name('guru');
     
 });
 Route::middleware(['operator'])->group(function () {

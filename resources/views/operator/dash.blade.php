@@ -1,5 +1,5 @@
 @extends('operator.temp')
-@section('admin')
+@section('operator')
     <div style="background: url('{{ asset('asset/nedusi.jpg') }}') no-repeat center center; 
             background-size: cover; 
             width: 100%; 
@@ -52,8 +52,8 @@
                         <div class="col-md-4 mt-3 mt-md-0">
                             <div style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">
                                 <h5 class="fw-bold mb-3">Informasi Sekolah</h5>
-                                <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>{{ $sch->alamat }}</p>
-                                <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>{{ $sch->kontak }}</p>
+                                <p class="mb-1"><i class="fas fa-chalkboard-teacher"></i> Jumlah guru: </p>
+                                <p class="mb-1"><i class="fas fa-users"></i> Jumalh siswa:</p>
                                 <p class="mb-0"><i class="fa-solid fa-school"></i> {{ $sch->nspn }}</p>
                             </div>
                         </div>

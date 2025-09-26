@@ -20,7 +20,7 @@
         transform: scaley(1.4);
         margin-left: 5px;
         margin-right: 10px;
-        text-shadow: 3px 3px 4px rgb(19, 70, 134);
+        text-shadow: 3px 3px 4px rgb(237, 63, 39);
     }
     .lonjong {
         font-weight: bold;
@@ -28,13 +28,13 @@
         transform: scaleY(1.5);
         padding-top: 5px;
         margin-right: 40px;
-        text-shadow: 3px 3px 4px rgb(19, 70, 134);
+        text-shadow: 3px 3px 4px rgb(237, 63, 39);
     }
     #navbar {
         background-color: transparent;
     }
     #navbar.scrolled {
-        background-color: rgb(237, 63, 39);
+        background-color: rgb(19, 70, 134);
     }
     .navbar .dropdown-menu {    
         border-radius: 12px;
@@ -60,8 +60,20 @@
         transition: background 0.2s, color 0.2s;
     }
     .navbar .dropdown-menu .dropdown-item:hover {
-        background: rgb(254, 178, 26);
+        background: rgb(19, 70, 134);
         color: #fff;
+    }
+    .text-style{
+        color: rgb(254, 178, 26);
+        text-shadow: 3px 3px 4px rgb(237, 63, 39);
+    }
+    .text-color{
+        color: rgb(253, 244, 227);
+        text-shadow: 3px 3px 4px rgb(19, 70, 134);
+    }
+    .text-model{
+        color: rgb(19, 70, 134);
+        text-shadow: 3px 3px 4px rgb(35, 118, 220);
     }
 </style>
 <body>
@@ -98,34 +110,45 @@
     </nav>
     @yield('content')
     <footer class="container-fluid" 
-            style="height: fit-content; background-color: rgb(237, 63, 39);">
+            style="height: fit-content; background-color: rgb(19, 70, 134);">
         <div class="container py-4">
             <div class="row"
-                 style="margin-bottom: 8%;">
+                 style="margin-bottom: 3%;">
                 <div class="col-12 col-md-6">
-                    <div class="d-flex">
+                    <div class="d-flex gap-3">
                         <img src="{{ asset('asset/'.$temp->logo) }}" alt="" 
                              style="height: 180px; width: 180px;">
                         <div>
-                            <h2 style="color: rgb(254, 178, 26);
-                                    text-shadow: 3px 3px 4px rgb(19, 70, 134);">
-                                    {{ $temp->nama }}
+                            <h2 class="text-style">
+                                Media Sosial
                             </h2>
                             <hr>
+                            <div class="row">
+                                <div class="d-flex justify-content-center align-items-center fs-3 gap-3">
+                                    <a href="https://www.instagram.com/nedusi_official/"
+                                       class="text-style">
+                                       <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                    <a href="https://www.youtube.com/@smpnegeri2singaparna989"
+                                       class="text-style">
+                                        <i class="fa-brands fa-youtube"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/p/SMPN-2-Singaparna-100083679584425/"
+                                       class="text-style">
+                                        <i class="fa-brands fa-square-facebook"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="container text-center text-style">
+                                <h6>@copyright {{ date('Y') }}</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <div class="container-fluid mb-auto" 
-         style="background-color: rgb(254, 178, 26);
-            height: fit-content;
-            padding: 10px 0%;">
-            <div class="container text-center">
-                <h6>@copyright {{ date('Y') }}</h6>
-            </div>
-    </div>
 </body>
 </html>
 <script src="{{ asset('Boostrap/js/bootstrap.bundle.min.js') }}"></script>
