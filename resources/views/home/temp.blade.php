@@ -20,7 +20,7 @@
         transform: scaley(1.4);
         margin-left: 5px;
         margin-right: 10px;
-        text-shadow: 3px 3px 4px rgb(237, 63, 39);
+        text-shadow: 1px 1px 4px rgb(19, 70, 134);
     }
     .lonjong {
         font-weight: bold;
@@ -28,7 +28,7 @@
         transform: scaleY(1.5);
         padding-top: 5px;
         margin-right: 40px;
-        text-shadow: 3px 3px 4px rgb(237, 63, 39);
+        text-shadow: 1px 1px 4px rgb(19, 70, 134);
     }
     #navbar {
         background-color: transparent;
@@ -73,7 +73,7 @@
     }
     .text-model{
         color: rgb(19, 70, 134);
-        text-shadow: 3px 3px 4px rgb(35, 118, 220);
+        text-shadow: 3px 3px 4px rgb(254, 178, 26);
     }
 </style>
 <body>
@@ -114,35 +114,46 @@
         <div class="container py-4">
             <div class="row"
                  style="margin-bottom: 3%;">
-                <div class="col-12 col-md-6">
-                    <div class="d-flex gap-3">
+                <div class="col-12 col-md-5 d-flex justify-content-center mb-2">
+                    <div class="d-flex gap-2">
                         <img src="{{ asset('asset/'.$temp->logo) }}" alt="" 
                              style="height: 180px; width: 180px;">
-                        <div>
-                            <h2 class="text-style">
-                                Media Sosial
-                            </h2>
-                            <hr>
-                            <div class="row">
-                                <div class="d-flex justify-content-center align-items-center fs-3 gap-3">
-                                    <a href="https://www.instagram.com/nedusi_official/"
-                                       class="text-style">
-                                       <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                    <a href="https://www.youtube.com/@smpnegeri2singaparna989"
-                                       class="text-style">
-                                        <i class="fa-brands fa-youtube"></i>
-                                    </a>
-                                    <a href="https://www.facebook.com/p/SMPN-2-Singaparna-100083679584425/"
-                                       class="text-style">
-                                        <i class="fa-brands fa-square-facebook"></i>
-                                    </a>
-                                </div>
+                        <div class="text-style">
+                            <h3>{{ $temp->nama }}</h3>
+                            <hr class="text-color">
+                            <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>{{ $temp->alamat }}</p>
+                            <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>{{ $temp->kontak }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mb-2">
+                    <div id="maps" style="width: 100%; height: 280px; overflow: auto; white-space: nowrap">
+                        <img src="{{ asset('asset/'.$temp->ft_lokasi) }}" alt="" style="display: block; max-width: none; max-height: none;">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <div>
+                        <h3 class="text-style" style="text-align: center">Media Sosial</h3>
+                        <hr class="text-color">
+                        <div class="row">
+                            <div class="d-flex justify-content-center align-items-center fs-3 gap-3">
+                                <a href="https://www.instagram.com/nedusi_official/"
+                                   class="text-style">
+                                   <i class="fa-brands fa-instagram"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@smpnegeri2singaparna989"
+                                   class="text-style">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                                <a href="https://www.facebook.com/p/SMPN-2-Singaparna-100083679584425/"
+                                   class="text-style">
+                                    <i class="fa-brands fa-square-facebook"></i>
+                                </a>
                             </div>
-                            <hr>
-                            <div class="container text-center text-style">
-                                <h6>@copyright {{ date('Y') }}</h6>
-                            </div>
+                        </div>
+                        <hr class="text-color">
+                        <div class="container text-center text-style">
+                            <h6>@copyright {{ date('Y') }} {{ $temp->nama }}</h6>
                         </div>
                     </div>
                 </div>
@@ -160,5 +171,10 @@
         } else {
             navbar.classList.remove('scrolled');
         }
+    });
+    window.addEventListener("load", function() {
+        let container = document.getElementById("maps");
+        container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
+        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
     });
 </script>

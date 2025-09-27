@@ -12,4 +12,8 @@ class GuruController extends Controller
         $data['sch'] = Scholl::first();
         return view('admin.guru',$data);
     }
+    public function addgr(){
+        $data['sch'] = Scholl::first();
+        return view('admin.addgr',$data);
+    }
 }

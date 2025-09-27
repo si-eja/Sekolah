@@ -15,6 +15,11 @@
             text-shadow: 3px 3px 4px rgb(237, 63, 39);
             text-decoration: none;
         }
+        .text-color{
+            font-weight: bold;
+            color: rgb(19, 70, 134);
+            text-shadow: 3px 3px 4px rgb(254, 178, 26);
+        }
     </style>
 </head>
 <body>
@@ -41,12 +46,15 @@
                 </a>
                 <h4 class="text-style">Warga Sekolah</h4>
                 <a href="{{ route('guru') }}" class="text-style">Guru</a>
-                <a href="#" class="text-style">Siswa</a>
+                <a href="{{ route('siswa') }}" class="text-style">Siswa</a>
                 <h4 class="text-style">Kepengurusan</h4>
                 <a href="#" class="text-style">Admin</a>
                 <a href="#" class="text-style">Operator</a>
             </div>
             <hr class="border-3">
+            <h6 class="text-style">User: {{ Auth::user()->username }}</h6>
+            <p class="text-style">Role: {{ Auth::user()->role }}</p>
+            <a href="#" class="btn w-100 btn-primary text-center">Edit</a>
             <a href="{{ route('authlogout') }}" class="btn w-100 btn-danger text-center">Logout</a>
         </div>
         <div class="col-10"

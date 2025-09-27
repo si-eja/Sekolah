@@ -51,9 +51,9 @@
                         <div class="col-md-4 mt-3 mt-md-0">
                             <div class="text-style">
                                 <h5 class="fw-bold mb-3">Informasi Sekolah</h5>
-                                <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>{{ $temp->alamat }}</p>
-                                <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>{{ $temp->kontak }}</p>
-                                <p class="mb-0"><i class="fa-solid fa-school"></i> {{ $temp->nspn }}</p>
+                                <p class="mb-1"><i class="fas fa-chalkboard-teacher"></i> Jumlah guru: </p>
+                                <p class="mb-1"><i class="fas fa-users"></i> Jumalh siswa:</p>
+                                <p class="mb-0"><i class="fa-solid fa-school"></i> nspn: {{ $temp->nspn }}</p>
                             </div>
                         </div>
                     </div>

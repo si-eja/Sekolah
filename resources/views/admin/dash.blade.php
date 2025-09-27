@@ -27,11 +27,7 @@
             width: 100%;">
         <div class="container py-4" 
              style="height: fit-content;">
-            <h2 style="font-weight: bold;
-                    padding-top: 5px;
-                    margin-right: 40px;
-                    text-shadow: 3px 3px 4px rgb(254, 178, 26);
-                    color: rgb(237, 63, 39);">
+            <h2 class="text-color">
                 Kepala sekolah saat ini
             </h2>
             <div class="rounded-5" 
