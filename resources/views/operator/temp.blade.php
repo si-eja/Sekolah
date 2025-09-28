@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $sch->nama }}</title>
-    <link rel="shortcut icon" href="{{ asset('asset/'.$sch->logo) }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('storage/'.$sch->logo) }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('Boostrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome/css/all.min.css') }}">
     <style>
@@ -23,7 +23,7 @@
         <div class="col-2 "
              style="background-color: rgb(19, 70, 134);">
             <div class="d-flex flex-column align-items-center">
-                <img src="{{ asset('asset/'.$sch->logo) }}" alt="" style="width: 80px; height: 80px;">
+                <img src="{{ asset('storage/'.$sch->logo) }}" alt="" style="width: 80px; height: 80px;">
                 <h4 class="text-center" 
                     style="color: rgb(254, 178, 26); 
                         font-weight: bold; 

@@ -1,6 +1,6 @@
 @extends('home.temp')
 @section('content')
-    <div style="background: url('{{ asset('asset/nedusi.jpg') }}') no-repeat center center; 
+    <div style="background: url('{{ asset('storage/'.$temp->foto) }}') no-repeat center center; 
             background-size: cover; 
             width: 100%; 
             display: flex; 
@@ -38,7 +38,7 @@
                     <div class="row"
                         style="background-color: rgb(19, 70, 134);">
                         <div class="col-12 col-md-2 d-flex justify-content-center mb-3">
-                            <img src="{{ asset('asset/'.$temp->ft_kepsek) }}" alt="" 
+                            <img src="{{ asset('storage/'.$temp->ft_kepsek) }}" alt="" 
                                 class="rounded-circle" 
                                 style="height: 150px; width: 150px;
                                 border: 5px solid rgb(254, 178, 26);">

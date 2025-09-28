@@ -1,6 +1,6 @@
 @extends('admin.temp')
 @section('admin')
-    <img src="{{ asset('asset/guru.jpg') }}" alt=""
+    <img src="{{ asset('storage/guru.jpg') }}" alt=""
          style="width: 100%;
             height: 400px;
             object-fit: cover;border-left: 2px solid black;
@@ -32,7 +32,7 @@
                         <input type="file" name="foto" id="foto" class="form-control" accept="image/*" onchange="previewImage(event)">
                     </div>
                     <div class="col-md-3">
-                        <img src="{{ asset('asset/ft_guru.png') }}" alt="" id="preview" 
+                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" id="preview" 
                         style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>

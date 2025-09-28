@@ -13,7 +13,7 @@
                         padding: 10% 2%;">
                     <div class="col-12 col-md-6 d-flex flex-column text-center">
                         <h1>
-                            <img src="{{ asset('asset/'.$sch->logo) }}" alt="" style="height: 250px; width: 250px;">
+                            <img src="{{ asset('storage/'.$sch->logo) }}" alt="" style="height: 250px; width: 250px;">
                         </h1>
                         <h3 class="text-style">{{ $sch->nama }}</h3>
                     </div>

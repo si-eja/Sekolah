@@ -1,6 +1,6 @@
 @extends('admin.temp')
 @section('admin')
-    <img src="{{ asset('asset/siswa.jpg') }}" alt=""
+    <img src="{{ asset('storage/siswa.jpg') }}" alt=""
          style="width: 100%;
             height: 400px;
             object-fit: cover;border-left: 2px solid black;

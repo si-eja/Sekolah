@@ -15,7 +15,8 @@ Route::get('/', [SchollController::class,'index']);
 Route::middleware(['admin'])->group(function () {
     //admmin
     Route::get('/admin', [UserController::class,'index'])->name('admin');
-    Route::get('/admin/profile/edit', [SchollController::class,'editsch'])->name('editsch');
+    Route::get('/admin/profile/edit{id}', [SchollController::class,'editsch'])->name('editsch');
+    Route::post('/admin/profile/edit{id}', [SchollController::class,'postsch'])->name('postsch');
     
     //guru
     Route::get('/admin/guru',[GuruController::class,'guru'])->name('guru');

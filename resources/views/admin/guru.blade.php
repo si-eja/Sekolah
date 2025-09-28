@@ -1,6 +1,6 @@
 @extends('admin.temp')
 @section('admin')
-    <img src="{{ asset('asset/guru.jpg') }}" alt=""
+    <img src="{{ asset('storage/guru.jpg') }}" alt=""
          style="width: 100%;
             height: 400px;
             object-fit: cover;border-left: 2px solid black;
@@ -32,7 +32,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <img src="{{ asset('asset/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
+                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
                     </td>
                     <td>Udin Sp.</td>
                     <td>98070320251001</td>
@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="{{ asset('asset/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
+                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
                     </td>
                     <td>Baban Sp. Skom</td>
                     <td>90070320251002</td>
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="{{ asset('asset/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
+                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
                     </td>
                     <td>Kokom Sp. S.Pai</td>
                     <td>89070320252003</td>

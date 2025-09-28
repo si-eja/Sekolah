@@ -1,6 +1,6 @@
 @extends('admin.temp')
 @section('admin')
-    <div style="background: url('{{ asset('asset/'.$sch->foto) }}')
+    <div style="background: url('{{ asset('storage/'.$sch->foto) }}')
             no-repeat center center; 
             background-size: cover; 
             width: 100%; 
@@ -36,7 +36,7 @@
                      style="background-color: rgb(19, 70, 134);">
                     <div class="row">
                         <div class="col-md-2 d-flex justify-content-center mb-3">
-                            <img src="{{ asset('asset/'.$sch->ft_kepsek) }}" alt="" 
+                            <img src="{{ asset('storage/'.$sch->ft_kepsek) }}" alt="" 
                                 class="rounded-circle" 
                                 style="height: 150px; width: 150px;
                                 border: 5px solid rgb(254, 178, 26);">
@@ -55,14 +55,14 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ route('editsch') }}" class="btn my-3 btn-primary">Ubah</a>
+                    <a href="{{ route('editsch', Crypt::encrypt($sch->id)) }}" class="btn my-3 btn-primary">Ubah</a>
                 </div>
                 <div class="px-5">
                     <h4 class="my-3 lonjong hovera"
                         style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26); background-color: rgb(237, 63, 39); font-weight: bold;">
                         Lokasi sekolah
                     </h4>
-                    <img src="{{ asset('asset/'.$sch->ft_lokasi) }}" alt="" style="width: 100%; margin-bottom: 40px;" class="rounded-4">
+                    <img src="{{ asset('storage/'.$sch->ft_lokasi) }}" alt="" style="width: 100%; margin-bottom: 40px;" class="rounded-4">
                 </div>
             </div>
         </div>

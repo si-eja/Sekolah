@@ -1,6 +1,6 @@
 @extends('operator.temp')
 @section('operator')
-    <img src="{{ asset('asset/berita.jpg') }}" alt=""
+    <img src="{{ asset('storage/berita.jpg') }}" alt=""
          style="width: 100%;
             height: 400px;
             object-fit: cover;border-left: 2px solid black;
@@ -22,7 +22,7 @@
             <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 360px;">
                 <div class="row py-3"
                      style="border: 2px solid black">
-                    <img src="{{ asset('asset/ujian.jpg') }}" alt="" class="col-md-2">
+                    <img src="{{ asset('storage/ujian.jpg') }}" alt="" class="col-md-2">
                     <div class="col-md-8 d-flex flex-column">
                         <h3>Ujian dimulai pada 12 juni 2026</h3>
                         <p>Pelaksanaan ujian akhir semester di sekolah berlangsung dengan tertib dan lancar.

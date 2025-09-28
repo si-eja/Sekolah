@@ -1,6 +1,6 @@
 @extends('operator.temp')
 @section('operator')
-    <img src="{{ asset('asset/galeri.jpg') }}" alt=""
+    <img src="{{ asset('storage/galeri.jpg') }}" alt=""
          style="width: 100%;
             height: 400px;
             object-fit: cover;border-left: 2px solid black;
@@ -23,7 +23,7 @@
                 <div class="row py-3"
                      style="border: 2px solid black">
                     <div class="col-md-6">
-                        <img src="{{ asset('asset/fotbar.jpg') }}" alt="" style="height: 400px; width: 100%; object-fit: cover;">
+                        <img src="{{ asset('storage/fotbar.jpg') }}" alt="" style="height: 400px; width: 100%; object-fit: cover;">
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex justify-content-between align-items-end">

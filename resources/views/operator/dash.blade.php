@@ -1,6 +1,6 @@
 @extends('operator.temp')
 @section('operator')
-    <div style="background: url('{{ asset('asset/nedusi.jpg') }}') no-repeat center center; 
+    <div style="background: url('{{ asset('storage/'.$sch->foto) }}') no-repeat center center; 
             background-size: cover; 
             width: 100%; 
             display: flex; 
@@ -39,7 +39,7 @@
                      style="background-color: rgb(19, 70, 134);">
                     <div class="row">
                         <div class="col-12 col-md-2 d-flex justify-content-center mb-3">
-                            <img src="{{ asset('asset/'.$sch->ft_kepsek) }}" alt="" 
+                            <img src="{{ asset('storage/'.$sch->ft_kepsek) }}" alt="" 
                                 class="rounded-circle" 
                                 style="height: 150px; width: 150px;
                                 border: 5px solid rgb(254, 178, 26);">
@@ -63,7 +63,7 @@
                     <h4 class="my-3 lonjong hovera">
                         Lokasi sekolah
                     </h4>
-                    <img src="{{ asset('asset/'.$sch->ft_lokasi) }}" alt="" style="width: 100%; margin-bottom: 40px;" class="rounded-4">
+                    <img src="{{ asset('storage/'.$sch->ft_lokasi) }}" alt="" style="width: 100%; margin-bottom: 40px;" class="rounded-4">
                 </div>
             </div>
         </div>

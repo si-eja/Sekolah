@@ -81,7 +81,7 @@
     <div class="container py-3">
         <li class="nav-item list-unstyled">
             <a class="nav-link active d-flex align-items-center" href="/" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-                <img src="{{ asset('asset/'.$temp->logo) }}" alt="" style="height: 80px; width: 80px;">
+                <img src="{{ asset('storage/'.$temp->logo) }}" alt="" style="height: 80px; width: 80px;">
                 <h5 class="hovera lonjong" style="font-weight: bolder;">{{ $temp->nama }}</h5>
             </a>
         </li>
@@ -116,7 +116,7 @@
                  style="margin-bottom: 3%;">
                 <div class="col-12 col-md-5 d-flex justify-content-center mb-2">
                     <div class="d-flex gap-2">
-                        <img src="{{ asset('asset/'.$temp->logo) }}" alt="" 
+                        <img src="{{ asset('storage/'.$temp->logo) }}" alt="" 
                              style="height: 180px; width: 180px;">
                         <div class="text-style">
                             <h3>{{ $temp->nama }}</h3>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="col-12 col-md-3 mb-2">
                     <div id="maps" style="width: 100%; height: 280px; overflow: auto; white-space: nowrap">
-                        <img src="{{ asset('asset/'.$temp->ft_lokasi) }}" alt="" style="display: block; max-width: none; max-height: none;">
+                        <img src="{{ asset('storage/'.$temp->ft_lokasi) }}" alt="" style="display: block; max-width: none; max-height: none;">
                     </div>
                 </div>
                 <div class="col-12 col-md-4 d-flex justify-content-center">
