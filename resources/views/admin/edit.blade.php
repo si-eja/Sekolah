@@ -1,6 +1,7 @@
 @extends('admin.temp')
 @section('admin')
-    <div style="background: url('{{ asset('asset/'.$sch->foto) }}')
+    <div id="foto"
+         style="background: url('{{ asset('asset/'.$sch->foto) }}')
             no-repeat center center; 
             background-size: cover; 
             width: 100%; 
@@ -34,28 +35,47 @@
                     border: 3px solid black;">
                 <div class="rounded-top-5 d-flex flex-column justify-content-center py-3 px-5"
                      style="background-color: rgb(19, 70, 134);">
-                    <div class="row">
+                    <form action="" method="get" enctype="multipart/form-data" class="row">
                         <div class="col-md-2 d-flex justify-content-center mb-3">
-                            <img src="{{ asset('asset/'.$sch->ft_kepsek) }}" alt="" 
+                            <img id="ft_kepsek" src="{{ asset('asset/'.$sch->ft_kepsek) }}" alt=""
                                 class="rounded-circle" 
                                 style="height: 150px; width: 150px;
                                 border: 5px solid rgb(254, 178, 26);">
                         </div>
-                        <div class="col-md-4">
-                            <h4 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->kepsek }}</h4><br>
-                            <h6 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->nama }} adalah sekolah negeri berakreditasi A di Singaparna, Tasikmalaya.
-                                Didirikan tahun {{ $sch->thn_berdiri }}, sekolah ini berkomitmen mencetak generasi cerdas dan berakhlak mulia.</h6>
+                        <div class="col-md-10">
+                            @csrf
+                            <label for="kepsek" class="form-label text-style">Kepala sekolah</label>
+                            <input type="text" name="kepsek" id="kepsek" class="form-control">
+                            <label for="ft_kepsek" class="form-label text-style">Foto Kepala sekolah</label>
+                            <input type="file" name="ft_kepsek" id="ft_kepsek" class="form-control" accept="image/*" onchange="previewImage(event, 'ft_kepsek')">
+                            <label for="foto" class="form-label text-style">Foto sekolah</label>
+                            <input type="file" name="foto" id="foto" class="form-control" accept="image/*" onchange="previewBackground(event, 'foto')">
                         </div>
-                        <div class="col-md-3 mt-3 mt-md-0">
-                            <div style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">
-                                <h5 class="fw-bold mb-3">Informasi Sekolah</h5>
-                                <p class="mb-1"><i class="fas fa-chalkboard-teacher"></i> Jumlah guru : </p>
-                                <p class="mb-1"><i class="fas fa-users"></i> Jumlah siswa :</p>
-                                <p class="mb-0"><i class="fa-solid fa-school"></i> {{ $sch->nspn }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="{{ route('editsch') }}" class="btn my-3 btn-primary">Ubah</a>
+                        <input type="submit" value="Edit" class="btn btn-primary mt-4">
+                    </form>
+                    <script>
+                    function previewImage(event, previewId) {
+                        const file = event.target.files[0];
+                        const reader = new FileReader();
+                        reader.onload = function() {
+                            document.getElementById(previewId).src = reader.result;
+                        };
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    }
+
+                    function previewBackground(event, previewId) {
+                        const file = event.target.files[0];
+                        const reader = new FileReader();
+                        reader.onload = function() {
+                            document.getElementById(previewId).style.backgroundImage = `url('${reader.result}')`;
+                        };
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                    </script>
                 </div>
                 <div class="px-5">
                     <h4 class="my-3 lonjong hovera"

@@ -16,7 +16,7 @@
                 border-bottom: 2px solid black;">
             <div class="d-flex justify-content-between p-4"
                  style="background-color: rgb(19, 70, 134);">
-                <h3 class="text-style">Tambah siswa</h3>
+                <h3 class="text-style">Edit siswa</h3>
             </div>
             <form action="" method="post" class="p-2">
                 @csrf

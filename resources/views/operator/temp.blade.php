@@ -36,15 +36,17 @@
                  style="color: rgb(254, 178, 26);
                     font-weight: bold;
                     text-shadow: 3px 3px 4px rgb(237, 63, 39);">
-                <a href="#" style="text-decoration: none;">
+                <a href="{{ route('operator') }}" style="text-decoration: none;">
                     <h4 class="text-style">Dashboard</h4>
                 </a>
                 <h4 class="text-style">Layanan</h4>
-                <a href="#" class="text-style">Berita</a>
-                <a href="#" class="text-style">Galeri</a>
-                <a href="#" class="text-style">Ekstrakurikuler</a>
+                <a href="{{ route('berita') }}" class="text-style">Berita</a>
+                <a href="{{ route('galeri') }}" class="text-style">Galeri</a>
+                <a href="{{ route('ekskul') }}" class="text-style">Ekstrakurikuler</a>
             </div>
             <hr class="border-3">
+            <h6 class="text-style">User: {{ Auth::user()->username }}</h6>
+            <p class="text-style">Role: {{ Auth::user()->role }}</p>
             <a href="{{ route('authlogout') }}" class="btn w-100 btn-danger text-center">Logout</a>
         </div>
         <div class="col-10"

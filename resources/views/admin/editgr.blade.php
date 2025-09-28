@@ -16,7 +16,7 @@
                 border-bottom: 2px solid black;">
             <div class="d-flex justify-content-between p-4"
                  style="background-color: rgb(19, 70, 134);">
-                <h3 class="text-style">Tambah guru</h3>
+                <h3 class="text-style">Edit guru</h3>
             </div>
             <form action="" method="post" enctype="multipart/form-data" class="p-2">
                 @csrf

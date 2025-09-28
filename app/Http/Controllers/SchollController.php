@@ -12,8 +12,8 @@ class SchollController extends Controller
         $data['temp'] = Scholl::first();
         return view('home.home', $data);
     }
-    public function temp(){
-        $data['temp'] = Scholl::first();
-        return view('home.home', $data);
+    public function editsch(){
+        $data['sch'] = Scholl::first();
+        return view('admin.edit', $data);
     }
 }

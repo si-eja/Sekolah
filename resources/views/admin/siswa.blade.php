@@ -36,7 +36,7 @@
                     <td>Laki-laki</td>
                     <td>2025</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{{ route('editsis') }}" class="btn btn-sm btn-primary">Edit</a>
                         <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                     </td>
                 </tr>
@@ -46,7 +46,7 @@
                     <td>Laki-laki</td>
                     <td>2025</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{{ route('editsis') }}" class="btn btn-sm btn-primary">Edit</a>
                         <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                     </td>
                 </tr>
@@ -56,7 +56,7 @@
                     <td>Perempuan</td>
                     <td>2025</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{{ route('editsis') }}" class="btn btn-sm btn-primary">Edit</a>
                         <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                     </td>
                 </tr>

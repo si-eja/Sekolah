@@ -38,7 +38,7 @@
                     <td>98070320251001</td>
                     <td>Penjas Orkes</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{{ route('editgr') }}" class="btn btn-sm btn-primary">Edit</a>
                         <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                     </td>
                 </tr>

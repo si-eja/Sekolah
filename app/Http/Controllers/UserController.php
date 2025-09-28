@@ -17,6 +17,7 @@ class UserController extends Controller
         $data['sch'] = Scholl::first();
         return view('operator.dash',$data);
     }
+    
     public function login(){
         $data['sch'] = Scholl::first();
         return view('login',$data);
