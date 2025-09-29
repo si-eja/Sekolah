@@ -21,12 +21,18 @@ Route::middleware(['admin'])->group(function () {
     //guru
     Route::get('/admin/guru',[GuruController::class,'guru'])->name('guru');
     Route::get('/admin/guru/tambah',[GuruController::class,'addgr'])->name('addgr');
-    Route::get('/admin/guru/edit',[GuruController::class,'editgr'])->name('editgr');
+    Route::post('/admin/guru/tambah',[GuruController::class,'grPost'])->name('grPost');
+    Route::get('/admin/guru/edit/{id}',[GuruController::class,'editgr'])->name('editgr');
+    Route::post('/admin/guru/edit/{id}',[GuruController::class,'grUpdate'])->name('grUpdate');
+    Route::get('/admin/guru/delete/{id}',[GuruController::class,'grDelete'])->name('grDelete');
     
     //siswa
     Route::get('/admin/siswa',[SiswaController::class,'siswa'])->name('siswa');
     Route::get('/admin/siswa/tambah',[SiswaController::class,'addsis'])->name('addsis');
-    Route::get('/admin/siswa/edit',[SiswaController::class,'editsis'])->name('editsis');
+    Route::post('/admin/siswa/tambah',[SiswaController::class,'sisPost'])->name('sisPost');
+    Route::get('/admin/siswa/edit/{id}',[SiswaController::class,'editsis'])->name('sisEdit');
+    Route::post('/admin/siswa/edit/{id}',[SiswaController::class,'sisUpdate'])->name('sisUpdate');
+    Route::get('/admin/siswa/delete/{id}',[SiswaController::class,'sisDelete'])->name('sisDelete');
     
 });
 Route::middleware(['operator'])->group(function () {

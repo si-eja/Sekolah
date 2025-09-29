@@ -18,21 +18,31 @@
                  style="background-color: rgb(19, 70, 134);">
                 <h3 class="text-style">Edit guru</h3>
             </div>
-            <form action="" method="post" enctype="multipart/form-data" class="p-2">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Validate Invalid</strong>
+                    <ul>
+                        @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{ route('grUpdate',Crypt::encrypt($guru->id)) }}" method="post" enctype="multipart/form-data" class="p-2">
                 @csrf
                 <div class="mb-3 row">
                     <div class="col-md-9">
                         <label for="nip" class="form-label">NIP</label>
-                        <input type="text" name="nip" id="nip" class="form-control">
+                        <input type="text" name="nip" id="nip" class="form-control" value="{{ $guru->nip }}">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" name="nama" id="nama" class="form-control">
+                        <input type="text" name="nama" id="nama" class="form-control" value="{{ $guru->nama }}">
                         <label for="mapel" class="form-label">Mata pelajaran</label>
-                        <input type="text" name="mapel" id="mapel" class="form-control">
+                        <input type="text" name="mapel" id="mapel" class="form-control" value="{{ $guru->mapel }}">
                         <label for="foto" class="form-label">Foto</label>
                         <input type="file" name="foto" id="foto" class="form-control" accept="image/*" onchange="previewImage(event)">
                     </div>
                     <div class="col-md-3">
-                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" id="preview" 
+                        <img src="{{ asset('storage/guru/'.$guru->foto) }}" alt="" id="preview" 
                         style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>

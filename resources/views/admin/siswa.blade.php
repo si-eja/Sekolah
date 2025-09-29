@@ -30,36 +30,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>404111</td>
-                    <td>Udin</td>
-                    <td>Laki-laki</td>
-                    <td>2025</td>
-                    <td>
-                        <a href="{{ route('editsis') }}" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>404222</td>
-                    <td>Asep</td>
-                    <td>Laki-laki</td>
-                    <td>2025</td>
-                    <td>
-                        <a href="{{ route('editsis') }}" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>404333</td>
-                    <td>Tini</td>
-                    <td>Perempuan</td>
-                    <td>2025</td>
-                    <td>
-                        <a href="{{ route('editsis') }}" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
+                    @foreach ($siswa as $data)
+                    <tr>
+                        <td>{{ $data->nisn }}</td>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->jenis_kelamin }}</td>
+                        <td>{{ $data->thn_masuk }}</td>
+                        <td>
+                            <a href="{{ route('sisEdit',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{{ route('sisDelete',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Hapus dari keranjang?')">Hapus</a>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>

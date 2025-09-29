@@ -23,11 +23,6 @@ class UserController extends Controller
         return view('login',$data);
     }
     public function auth(Request $request){
-        // $validate= $request->validate([
-        //     'username' => 'required|string',
-        //     'password' => 'required'
-        // ]);
-
         if (Auth::attempt([
             'username'=> $request->username,
             'password'=> $request->password

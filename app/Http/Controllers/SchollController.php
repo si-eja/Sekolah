@@ -46,9 +46,9 @@ class SchollController extends Controller
             }
 
             $image = $request->file('ft_kepsek');
-            $ftKepsek = time()."-".$request->name.".".$image->getClientOriginalExtension();
-            $image->storeAs('public/'.$ftKepsek);
-            $validate['ft_kepsek'] = $ftKepsek;
+            $ft_Kepsek = time()."-".$request->name.".".$image->getClientOriginalExtension();
+            $image->storeAs('public/'.$ft_Kepsek);
+            $validate['ft_kepsek'] = $ft_Kepsek;
         }
         if($request->hasFile('foto')){
             if(Storage::exists('public/'. $sch->foto)){
@@ -62,7 +62,7 @@ class SchollController extends Controller
         }
         $sch->update([
             'kepsek' => $request->kepsek,
-            'ft_kepsek' => $ftKepsek,
+            'ft_kepsek' => $ft_Kepsek,
             'foto' => $fotoName,
             'visi_misi' => $request->visi_misi
         ]);

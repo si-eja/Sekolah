@@ -18,22 +18,32 @@
                  style="background-color: rgb(19, 70, 134);">
                 <h3 class="text-style">Edit siswa</h3>
             </div>
-            <form action="" method="post" class="p-2">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Validate Invalid</strong>
+                    <ul>
+                        @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{ route('sisUpdate', Crypt::encrypt($siswa->id)) }}" method="post" class="p-2">
                 @csrf
                 <div class="mb-3">
                         <label for="nisn" class="form-label">NISN</label>
-                        <input type="text" name="nisn" id="nisn" class="form-control">
+                        <input type="text" name="nisn" id="nisn" class="form-control" value="{{ $siswa->nisn }}">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" name="nama" id="nama" class="form-control">
+                        <input type="text" name="nama" id="nama" class="form-control" value="{{ $siswa->nama }}">
                         <label for="jk" class="form-label">Jenis kelamin</label>
-                        <select name="jk" id="jk" class="form-select">
-                            <option value="">Laki-laki</option>
-                            <option value="">Perempuan</option>
+                        <select name="jenis_kelamin" id="jk" class="form-select">
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                         <label for="thn_masuk" class="form-label">Tahun masuk</label>
-                        <input type="text" name="thn_masuk" id="thn_masuk" class="form-control">
+                        <input type="text" name="thn_masuk" id="thn_masuk" class="form-control" value="{{ $siswa->thn_masuk }}">
                 </div>
-                <input type="submit" value="Tambah" class="w-100 btn btn-success">
+                <input type="submit" value="Edit" class="w-100 btn btn-success">
             </form>
             <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>
         </div>

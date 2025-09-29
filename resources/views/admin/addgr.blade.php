@@ -18,7 +18,17 @@
                  style="background-color: rgb(19, 70, 134);">
                 <h3 class="text-style">Tambah guru</h3>
             </div>
-            <form action="" method="post" enctype="multipart/form-data" class="p-2">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Validate Invalid</strong>
+                    <ul>
+                        @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{ route('grPost') }}" method="post" enctype="multipart/form-data" class="p-2">
                 @csrf
                 <div class="mb-3 row">
                     <div class="col-md-9">
@@ -32,7 +42,7 @@
                         <input type="file" name="foto" id="foto" class="form-control" accept="image/*" onchange="previewImage(event)">
                     </div>
                     <div class="col-md-3">
-                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" id="preview" 
+                        <img src="{{ asset('storage/guru/ft_guru.png') }}" alt="" id="preview" 
                         style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>

@@ -30,42 +30,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
-                    </td>
-                    <td>Udin Sp.</td>
-                    <td>98070320251001</td>
-                    <td>Penjas Orkes</td>
-                    <td>
-                        <a href="{{ route('editgr') }}" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
-                    </td>
-                    <td>Baban Sp. Skom</td>
-                    <td>90070320251002</td>
-                    <td>Bimbingan konseling</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="{{ asset('storage/ft_guru.png') }}" alt="" style="height: 80px; width: 80px;">
-                    </td>
-                    <td>Kokom Sp. S.Pai</td>
-                    <td>89070320252003</td>
-                    <td>Pendidikan agama islam</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
+                    @foreach ($guru as $data)
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/guru/'.$data->foto) }}" alt="" style="height: 80px; width: 80px;">
+                        </td>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->nip }}</td>
+                        <td>{{ $data->mapel }}</td>
+                        <td>
+                            <a href="{{ route('editgr',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{{ route('grDelete',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Hapus dari keranjang?')">Hapus</a>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>
