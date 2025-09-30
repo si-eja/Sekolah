@@ -24,7 +24,7 @@ class GuruController extends Controller
     }
     public function editgr(String $id){
         $id = $this->decryptId($id);
-
+        
         $data['sch'] = Scholl::first();
         $data['guru'] = Guru::findOrFail($id);
         return view('admin.editgr',$data);
@@ -76,7 +76,7 @@ class GuruController extends Controller
             $image = $request->file('foto');
             $ftGuru = time()."-".$request->name.".".$image->getClientOriginalExtension();
             $image->storeAs('public/guru/'.$ftGuru);
-            $validate['ft_kepsek'] = $ftGuru;
+            $validate['foto'] = $ftGuru;
         }
         $guru->update([
             'nama' => $request->nama,

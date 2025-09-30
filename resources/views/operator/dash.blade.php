@@ -38,13 +38,13 @@
                 <div class="rounded-5 d-flex flex-column justify-content-center py-3 px-5"
                      style="background-color: rgb(19, 70, 134);">
                     <div class="row">
-                        <div class="col-12 col-md-2 d-flex justify-content-center mb-3">
+                        <div class="col-md-2 d-flex justify-content-center mb-3">
                             <img src="{{ asset('storage/'.$sch->ft_kepsek) }}" alt="" 
                                 class="rounded-circle" 
                                 style="height: 150px; width: 150px;
                                 border: 5px solid rgb(254, 178, 26);">
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-md-6">
                             <h3 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->kepsek }}</h3><br>
                             <h6 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->nama }} adalah sekolah negeri berakreditasi A di Singaparna, Tasikmalaya.
                                 Didirikan tahun {{ $sch->thn_berdiri }}, sekolah ini berkomitmen mencetak generasi cerdas dan berakhlak mulia.</h6>

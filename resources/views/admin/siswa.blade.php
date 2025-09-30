@@ -38,13 +38,52 @@
                         <td>{{ $data->thn_masuk }}</td>
                         <td>
                             <a href="{{ route('sisEdit',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="{{ route('sisDelete',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Hapus dari keranjang?')">Hapus</a>
+                            {{-- <a href="{{ route('sisDelete',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Hapus dari data?')">Hapus</a> --}}
+                            <button class="btn btn-sm btn-danger" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#deleteSiswaModal"
+                                    data-id="{{ Crypt::encrypt($data->id) }}"
+                                    data-nama="{{ $data->nama }}">
+                                Hapus
+                            </button>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
+                <div class="modal fade" id="deleteSiswaModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah kamu yakin ingin menghapus siswa <b id="namaSiswa"></b>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <a href="#" id="btnDeleteSiswa" class="btn btn-danger">Hapus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </table>
             <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>
+            <script>
+                const deleteSiswaModal = document.getElementById('deleteSiswaModal');
+                deleteSiswaModal.addEventListener('show.bs.modal', function (event) {
+                    const button = event.relatedTarget;
+                    const id = button.getAttribute('data-id');
+                    const nama = button.getAttribute('data-nama');
+
+                    // Tampilkan nama siswa di modal
+                    document.getElementById('namaSiswa').textContent = nama;
+
+                    // Isi link hapus sesuai route sisDelete
+                    const deleteBtn = document.getElementById('btnDeleteSiswa');
+                    deleteBtn.href = "{{ route('sisDelete', ['id' => ':id']) }}".replace(':id', id);
+                });
+            </script>
         </div>
     </div>
 @endsection

@@ -41,7 +41,7 @@
                                 style="height: 150px; width: 150px;
                                 border: 5px solid rgb(254, 178, 26);">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h4 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->kepsek }}</h4><br>
                             <h6 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->nama }} adalah sekolah negeri berakreditasi A di Singaparna, Tasikmalaya.
                                 Didirikan tahun {{ $sch->thn_berdiri }}, sekolah ini berkomitmen mencetak generasi cerdas dan berakhlak mulia.</h6>
@@ -49,7 +49,7 @@
                         <div class="col-md-3 mt-3 mt-md-0">
                             <div style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">
                                 <h5 class="fw-bold mb-3">Informasi Sekolah</h5>
-                                <p class="mb-1"><i class="fas fa-chalkboard-teacher"></i> Jumlah guru : </p>
+                                <p class="mb-1"><i class="fas fa-chalkboard-teacher"></i> Jumlah guru :</p>
                                 <p class="mb-1"><i class="fas fa-users"></i> Jumlah siswa :</p>
                                 <p class="mb-0"><i class="fa-solid fa-school"></i> {{ $sch->nspn }}</p>
                             </div>
@@ -57,7 +57,21 @@
                     </div>
                     <a href="{{ route('editsch', Crypt::encrypt($sch->id)) }}" class="btn my-3 btn-primary">Ubah</a>
                 </div>
-                <div class="px-5">
+                <div class="px-5 mt-2">
+                    <div class="row gap-4">
+                        <div class="col-md-3 bg-info text-info p-3 rounded-4 d-flex align-items-center gap-3">
+                            <i class="fs-3 fa-solid fa-people-group" style="color: black; text-shadow: 2px 2px 4px rgb(254, 178, 26);"></i>
+                            <h4 style="color: black; text-shadow: 2px 2px 4px rgb(254, 178, 26);">Ekstrakurikuler</h4>
+                        </div>
+                        <div class="col-md-3 bg-info text-info p-3 rounded-4 d-flex align-items-center gap-3">
+                            <i class="fs-3 fa-solid fa-newspaper" style="color: black; text-shadow: 2px 2px 4px rgb(254, 178, 26);"></i>
+                            <h4 style="color: black; text-shadow: 2px 2px 4px rgb(254, 178, 26);">Berita</h4>
+                        </div>
+                        <div class="col-md-3 bg-info text-info p-3 rounded-4 d-flex align-items-center gap-3">
+                            <i class="fs-3 fa-solid fa-images" style="color: black; text-shadow: 2px 2px 4px rgb(254, 178, 26);"></i>
+                            <h4 style="color: black; text-shadow: 2px 2px 4px rgb(254, 178, 26);">Galeri</h4>
+                        </div>
+                    </div>
                     <h4 class="my-3 lonjong hovera"
                         style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26); background-color: rgb(237, 63, 39); font-weight: bold;">
                         Lokasi sekolah

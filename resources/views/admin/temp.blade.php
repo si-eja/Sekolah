@@ -67,3 +67,4 @@
 </div>
 </body>
 </html>
+<script src="{{ asset('Boostrap/js/bootstrap.bundle.min.js') }}"></script>
