@@ -1,10 +1,5 @@
 @extends('operator.temp')
 @section('operator')
-    <img src="{{ asset('storage/galeri.jpg') }}" alt=""
-         style="width: 100%;
-            height: 400px;
-            object-fit: cover;border-left: 2px solid black;
-            border-right: 2px solid black;">
     <div class="conteinter-fluid"
          style="height: fit-content;
             background-color: rgb(253, 244, 227);">

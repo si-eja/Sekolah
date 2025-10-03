@@ -1,10 +1,5 @@
 @extends('admin.temp')
 @section('admin')
-    <img src="{{ asset('storage/guru.jpg') }}" alt=""
-         style="width: 100%;
-            height: 400px;
-            object-fit: cover;border-left: 2px solid black;
-            border-right: 2px solid black;">
     <div class="conteinter-fluid"
          style="height: fit-content;
             background-color: rgb(253, 244, 227);">
@@ -19,40 +14,42 @@
                 <h3 class="text-style">Data guru</h3>
                 <a href="{{ route('addgr') }}" class="btn btn-success">Tambah data</a>
             </div>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Nama</th>
-                    <th>NIP</th>
-                    <th>Mapel</th>
-                    <th>Aksi Lainnya</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach ($guru as $data)
+            <div style="overflow-x: auto">
+                <table class="table table-hover" style="width: 100%">
+                    <thead>
                     <tr>
-                        <td>
-                            <img src="{{ asset('storage/guru/'.$data->foto) }}" alt="" style="height: 80px; width: 80px;">
-                        </td>
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->nip }}</td>
-                        <td>{{ $data->mapel }}</td>
-                        <td>
-                            <a href="{{ route('editgr',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-primary">Edit</a>
-                            {{-- <a href="{{ route('grDelete',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Hapus dari data?')">Hapus</a> --}}
-                            <button class="btn btn-sm btn-danger" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#deleteModal"
-                                    data-id="{{ Crypt::encrypt($data->id) }}"
-                                    data-nama="{{ $data->nama }}">
-                                Hapus
-                            </button>
-                        </td>
+                        <th>Foto</th>
+                        <th>Nama</th>
+                        <th>NIP</th>
+                        <th>Mapel</th>
+                        <th>Aksi Lainnya</th>
                     </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($guru as $data)
+                        <tr>
+                            <td>
+                                <img src="{{ asset('storage/guru/'.$data->foto) }}" alt="" style="height: 80px; width: 80px;">
+                            </td>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->nip }}</td>
+                            <td>{{ $data->mapel }}</td>
+                            <td>
+                                <a href="{{ route('editgr',Crypt::encrypt($data->id)) }}" class="btn btn-primary">Edit</a>
+                                {{-- <a href="{{ route('grDelete',Crypt::encrypt($data->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Hapus dari data?')">Hapus</a> --}}
+                                <button class="btn btn-danger" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#deleteModal"
+                                        data-id="{{ Crypt::encrypt($data->id) }}"
+                                        data-nama="{{ $data->nama }}">
+                                    Hapus
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">

@@ -29,43 +29,55 @@ class SchollController extends Controller
         $data['edit'] = Scholl::findOrFail($id);
         return view('admin.edit', $data);
     }
-    public function postsch(Request $request, String $id){
+    public function postsch(Request $request, String $id)
+    {
         $id = $this->decryptId($id);
 
         $validate = $request->validate([
             'kepsek' => 'required|string|max:40',
-            'ft_kepsek' => 'image|required|max:5084',
-            'foto' => 'image|required|max:5084',
+            'ft_kepsek' => 'nullable|image|max:5084',
+            'foto' => 'nullable|image|max:5084',
             'visi_misi' => 'required|string',
+            'deskripsi' => 'required|string',
         ]);
-        $sch = Scholl::find($id);
 
-        if($request->hasFile('ft_kepsek')){
-            if(Storage::exists('public/'. $sch->ft_kepsek)){
-                Storage::delete('public/'. $sch->ft_kepsek);
+        $sch = Scholl::findOrFail($id);
+
+        // default ke data lama
+        $ftKepsek = $sch->ft_kepsek;
+        $fotoSekolah = $sch->foto;
+
+        // upload foto kepala sekolah
+        if ($request->hasFile('ft_kepsek')) {
+            if (Storage::exists('public/'.$sch->ft_kepsek)) {
+                Storage::delete('public/'.$sch->ft_kepsek);
             }
 
             $image = $request->file('ft_kepsek');
-            $ft_Kepsek = time()."-".$request->name.".".$image->getClientOriginalExtension();
-            $image->storeAs('public/'.$ft_Kepsek);
-            $validate['ft_kepsek'] = $ft_Kepsek;
+            $ftKepsek = time().'-kepsek.'.$image->getClientOriginalExtension();
+            $image->storeAs('public', $ftKepsek);
         }
-        if($request->hasFile('foto')){
-            if(Storage::exists('public/'. $sch->foto)){
-                Storage::delete('public/'. $sch->foto);
+
+        // upload foto sekolah
+        if ($request->hasFile('foto')) {
+            if (Storage::exists('public/'.$sch->foto)) {
+                Storage::delete('public/'.$sch->foto);
             }
 
             $image = $request->file('foto');
-            $fotoName = time()."-".$request->name.".".$image->getClientOriginalExtension();
-            $image->storeAs('public/'.$fotoName);
-            $validate['foto'] = $fotoName;
+            $fotoSekolah = time().'-sekolah.'.$image->getClientOriginalExtension();
+            $image->storeAs('public', $fotoSekolah);
         }
+
+        // update data
         $sch->update([
             'kepsek' => $request->kepsek,
-            'ft_kepsek' => $ft_Kepsek,
-            'foto' => $fotoName,
-            'visi_misi' => $request->visi_misi
+            'ft_kepsek' => $ftKepsek,
+            'foto' => $fotoSekolah,
+            'visi_misi' => $request->visi_misi,
+            'deskripsi' => $request->deskripsi
         ]);
-        return redirect()->route('admin');
+
+        return redirect()->route('admin')->with('success', 'Data sekolah berhasil diperbarui.');
     }
 }

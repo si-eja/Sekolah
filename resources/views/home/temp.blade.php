@@ -75,6 +75,65 @@
         color: rgb(19, 70, 134);
         text-shadow: 3px 3px 4px rgb(254, 178, 26);
     }
+    .navbar-toggler {
+    background-color: black !important; /* background hitam */
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    }
+
+    /* Styling umum untuk nav item */
+    .navbar-nav .nav-item {
+        margin: 6px 0;
+    }
+
+    .navbar-nav .nav-link {
+        color: rgb(254, 178, 26) !important;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 6px;
+    }
+
+    .navbar-nav .nav-link:hover {
+        background-color: #333;
+    }
+
+    .dropdown-menu {
+        background-color: #111 !important;
+        border: none;
+        border-radius: 6px;
+    }
+
+    .dropdown-item {
+        color: white !important;
+        padding: 8px 12px;
+    }
+
+    .dropdown-item:hover {
+        background-color: #333 !important;
+    }
+
+    /* Mobile khusus */
+    @media (max-width: 991px) {
+        .navbar-collapse.show {
+            background-color: black !important;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .navbar-nav .nav-item {
+            margin: 8px 0;
+        }
+
+        .dropdown-menu {
+            background-color: #111 !important;
+            border: none;
+            border-radius: 6px;
+            margin-top: 5px;
+        }
+    }
 </style>
 <body>
     <nav id="navbar" class="navbar navbar-expand-sm navbar-dark fixed-top">
@@ -86,7 +145,7 @@
             </a>
         </li>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
+            <i class="fa-solid fa-bars" style="color:white; font-size:24px;"></i>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ms-auto">
@@ -176,5 +235,19 @@
         let container = document.getElementById("maps");
         container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
         container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+    });
+    const navbarCollapse = document.getElementById('collapsibleNavbar');
+
+    navbarCollapse.addEventListener('show.bs.collapse', function () {
+    navbarCollapse.style.backgroundColor = "black";
+    navbarCollapse.style.padding = "15px";
+    navbarCollapse.style.borderRadius = "8px";
+    navbarCollapse.style.boxShadow = "0 4px 8px rgba(0,0,0,0.3)";
+    });
+
+    navbarCollapse.addEventListener('hide.bs.collapse', function () {
+    navbarCollapse.style.backgroundColor = "transparent";
+    navbarCollapse.style.padding = "0";
+    navbarCollapse.style.boxShadow = "none";
     });
 </script>

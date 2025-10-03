@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
+use App\Models\Ekskul;
+use App\Models\Galeri;
+use App\Models\Guru;
 use App\Models\Scholl;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,13 +16,17 @@ class UserController extends Controller
     //
     public function index(){
         $data['sch'] = Scholl::first();
+        $data['berita'] = Berita::all();
+        $data['ekskul'] = Ekskul::all();
+        $data['galeri'] = Galeri::all();
+        $data['siswa'] = Siswa::all();
+        $data['guru'] = Guru::all();
         return view('admin.dash',$data);
     }
     public function operator(){
         $data['sch'] = Scholl::first();
         return view('operator.dash',$data);
     }
-    
     public function login(){
         $data['sch'] = Scholl::first();
         return view('login',$data);

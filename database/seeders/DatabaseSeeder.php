@@ -40,7 +40,9 @@ class DatabaseSeeder extends Seeder
             'kontak'=> '(0123) 6324',
             'visi_misi'=> 'Mewujudkan peserta didik yang beriman, berkarakter,cerdas, dan berdaya saing di era global.',
             'thn_berdiri'=> '2007',
-            'deskripsi'=> '-',
+            'deskripsi'=> 'SMP Negeri 2 Singaparna adalah sekolah menengah pertama yang berlokasi di Jl. Raya Pemda, Singasari, Kec. Singaparna, Kab. Tasikmalaya. 
+            Sekolah ini berkomitmen menciptakan lingkungan belajar yang disiplin, nyaman, dan berkarakter dengan dukungan guru profesional serta fasilitas yang memadai. 
+            Melalui berbagai kegiatan akademik dan ekstrakurikuler, SMPN 2 Singaparna terus berupaya menumbuhkan generasi yang berprestasi, kreatif, dan berakhlak mulia.',
         ]);
     }
 }

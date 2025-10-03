@@ -27,7 +27,7 @@
                     padding-top: 5px;
                     margin-right: 40px;
                     text-shadow: 3px 3px 4px rgb(254, 178, 26);
-                    color: rgb(237, 63, 39);">
+                    color: rgb(19, 70, 134);">
                 Kepala sekolah saat ini
             </h2>
             <div class="rounded-5" 
@@ -60,10 +60,7 @@
                     </div>
                 </div>
                 <div class="px-5">
-                    <h4 class="my-3 lonjong hovera">
-                        Lokasi sekolah
-                    </h4>
-                    <img src="{{ asset('storage/'.$sch->ft_lokasi) }}" alt="" style="width: 100%; margin-bottom: 40px;" class="rounded-4">
+                    
                 </div>
             </div>
         </div>
