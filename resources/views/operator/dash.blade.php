@@ -17,12 +17,16 @@
             </h5>
         </div>
     </div>
+    <div class="container-fluid py-4"
+         style="background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
+        <h3 class="text-style">Dashboard</h3>
+    </div>
     <div style="background-color: rgb(253, 244, 227);
             display: flex;
             justify-content: center;
             width: 100%;">
         <div class="container py-4" 
-             style="height: fit-content;">
+        style="height: fit-content;">
             <h2 style="font-weight: bold;
                     padding-top: 5px;
                     margin-right: 40px;
@@ -30,39 +34,23 @@
                     color: rgb(19, 70, 134);">
                 Kepala sekolah saat ini
             </h2>
-            <div class="rounded-5" 
-                 style="height: fit-content;
-                    width: 100%;
-                    background-color: rgb(237, 63, 39);
-                    border: 3px solid black;">
-                <div class="rounded-5 d-flex flex-column justify-content-center py-3 px-5"
-                     style="background-color: rgb(19, 70, 134);">
-                    <div class="row">
-                        <div class="col-md-2 d-flex justify-content-center mb-3">
-                            <img src="{{ asset('storage/'.$sch->ft_kepsek) }}" alt="" 
-                                class="rounded-circle" 
-                                style="height: 150px; width: 150px;
-                                border: 5px solid rgb(254, 178, 26);">
-                        </div>
-                        <div class="col-md-6">
-                            <h3 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->kepsek }}</h3><br>
-                            <h6 style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">{{ $sch->nama }} adalah sekolah negeri berakreditasi A di Singaparna, Tasikmalaya.
-                                Didirikan tahun {{ $sch->thn_berdiri }}, sekolah ini berkomitmen mencetak generasi cerdas dan berakhlak mulia.</h6>
-                        </div>
-                        <div class="col-md-4 mt-3 mt-md-0">
-                            <div style="color: white; text-shadow: 2px 2px 4px rgb(254, 178, 26);">
-                                <h5 class="fw-bold mb-3">Informasi Sekolah</h5>
-                                <p class="mb-1"><i class="fas fa-chalkboard-teacher"></i> Jumlah guru: </p>
-                                <p class="mb-1"><i class="fas fa-users"></i> Jumalh siswa:</p>
-                                <p class="mb-0"><i class="fa-solid fa-school"></i> {{ $sch->nspn }}</p>
-                            </div>
-                        </div>
-                    </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{ asset('storage/'.$sch->ft_kepsek) }}" 
+                        alt="" 
+                        class="img-fluid rounded-5 border border-4 border-dark mx-auto d-flex align-content-center">
                 </div>
-                <div class="px-5">
-                    
+                <div class="col-md-9">
+                    <div class="d-flex flex-column">
+                        <h3 class="fw-bold mb-4">{{ $sch->kepsek }}</h3>
+                        <hr>
+                        <h5 class="fw-bold mb-0">{{ $sch->deskripsi }}</h5>
+                    </div>
+                    <hr>
                 </div>
             </div>
         </div>
     </div>
+    <div class="p-4" style="background: linear-gradient(315deg, rgb(19, 70, 134) 0%, rgb(237, 63, 39) 50%); height: 1rem;"></div>
 @endsection

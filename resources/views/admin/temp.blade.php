@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{{ asset('storage/'.$sch->logo) }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('Boostrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
     <style>
         .text-style{
             color: rgb(254, 178, 26);
@@ -76,7 +77,7 @@
         </div>
     </nav>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="height: 100vh;">
             <!-- Sidebar -->
             <div class="offcanvas-lg offcanvas-start col-lg-2 p-3"
                 tabindex="-1"
@@ -89,7 +90,7 @@
                             style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
                         <span class="navbar-brand mb-0 h3 text-style">{{ $sch->nama }}</span>
                     </div>
-                    <h6 class="text-style mt-4">User: {{ Auth::user()->username }}</h6>
+                    <h6 class="text-style mt-4">User: {{ Auth::user()->name }}</h6>
                     <hr class="border-3 w-100">
                     <!-- Menu -->
                     <div class="d-flex flex-column align-items-start gap-2 mb-4 w-100 sidebar-menu">
@@ -97,7 +98,7 @@
                             <h6>Dashboard</h6>
                         </a>
                         <!-- Kepengurusan -->
-                        <a href="{{ route('admin') }}" class="text-style">
+                        <a href="{{ route('user') }}" class="text-style">
                             <h6>Kepengurusan</h6>
                         </a>
                         <!-- Warga Sekolah -->
@@ -133,3 +134,4 @@
 </body>
 </html>
 <script src="{{ asset('Boostrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('DataTables/datatables.min.js') }}"></script>

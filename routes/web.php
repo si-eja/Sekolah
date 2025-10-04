@@ -14,11 +14,17 @@ Route::get('/', [SchollController::class,'index']);
 
 Route::middleware(['admin'])->group(function () {
     //admmin
-    Route::get('/admin', [UserController::class,'index'])->name('admin');
     Route::get('/admin/profile/edit{id}', [SchollController::class,'editsch'])->name('editsch');
     Route::post('/admin/profile/edit{id}', [SchollController::class,'postsch'])->name('postsch');
-
+    
     //user
+    Route::get('/admin', [UserController::class,'index'])->name('admin');
+    Route::get('/admin/user', [UserController::class,'user'])->name('user');
+    Route::get('/admin/user/tambah', [UserController::class,'adduser'])->name('adduser');
+    Route::post('/admin/user/tambah', [UserController::class,'userPost'])->name('userPost');
+    Route::get('/admin/user/edit/{id}', [UserController::class,'edituser'])->name('edituser');
+    Route::post('/admin/user/edit/{id}', [UserController::class,'userUpdate'])->name('userUpdate');
+    Route::get('/admin/user/delete/{id}',[SiswaController::class,'userDelete'])->name('userDelete');
     
     //guru
     Route::get('/admin/guru',[GuruController::class,'guru'])->name('guru');
@@ -48,15 +54,14 @@ Route::middleware(['operator'])->group(function () {
     //foto
     Route::get('/operator/galeri/foto', [GaleriController::class,'addft'])->name('addft');
     Route::post('/operator/galeri/foto', [GaleriController::class,'ftPost'])->name('ftPost');
-    Route::get('/operator/galeri/foto/{id}', [GaleriController::class,'editft'])->name('editft');
-    Route::post('/operator/galeri/foto/{id}', [GaleriController::class,'ftUpdate'])->name('ftUpdate');
     //video
     Route::get('/operator/galeri/video', [GaleriController::class,'addvid'])->name('addvid');
     Route::post('/operator/galeri/video', [GaleriController::class,'vidPost'])->name('vidPost');
-    Route::get('/operator/galeri/video/{id}', [GaleriController::class,'editvid'])->name('editvid');
-    Route::post('/operator/galeri/video/{id}', [GaleriController::class,'vidUpdate'])->name('vidUpdate');
+    //edit
+    Route::get('/operator/galeri/{id}', [GaleriController::class,'editGlr'])->name('editGlr');
+    Route::post('/operator/galeri/{id}', [GaleriController::class,'glrUpdate'])->name('glrUpdate');
     //Delete from galeri
-    Route::get('/operator/galeri/delete/file/{id}', [GaleriController::class,'glrDelete'])->name('glrDelete');
+    Route::delete('/operator/galeri/delete/file/{id}', [GaleriController::class,'glrDelete'])->name('glrDelete');
     
     //ekstra
     Route::get('/operator/ekstra', [EkskulController::class,'Ekskul'])->name('ekskul');

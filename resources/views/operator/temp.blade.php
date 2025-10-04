@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{{ asset('Boostrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome/css/all.min.css') }}">
     <style>
+        .text-style{
+            color: rgb(254, 178, 26);
+            font-weight: bold;
+            text-shadow: 3px 3px 4px rgb(237, 63, 39);
+            text-decoration: none;
+        }
         /* Sidebar tetap biru di desktop */
         #sidebarMenu {
             background: linear-gradient(90deg, rgb(19, 70, 134) 0%, rgb(237, 63, 39) 120%);
@@ -32,10 +38,19 @@
             text-shadow: none;
         }
 
+        .content-area {
+            background-color: rgb(253, 244, 227);
+            height: 100vh;
+            overflow-y: auto;
+            padding-top: 0 !important; /* default untuk desktop */
+        }
         /* Biar rapi offcanvas di mobile */
         @media (max-width: 991px) {
             #sidebarMenu {
                 width: 55%; /* lebar pas di hp */
+            }
+            .content-area {
+                padding-top: 3rem !important; /* kasih jarak biar gak ketutup navbar */
             }
         }
     </style>
@@ -74,12 +89,12 @@
                     <!-- Menu -->
                     <div class="d-flex flex-column align-items-start gap-2 mb-4 w-100 sidebar-menu">
                         <a href="{{ route('operator') }}" class="text-style">
-                            <h5>Dashboard</h5>
+                            <h6>Dashboard</h6>
                         </a>
 
                         <!-- Layanan -->
                         <button class="btn btn-link text-style p-0" data-bs-toggle="collapse" data-bs-target="#layananCollapse" aria-expanded="false" aria-controls="layananCollapse">
-                            <h5>Layanan</h5>
+                            <h6>Layanan</h6>
                         </button>
                         <div class="collapse ps-3" id="layananCollapse">
                             <a href="{{ route('berita') }}" class="text-style d-block mb-2">Berita</a>
@@ -94,7 +109,7 @@
             </div>
 
             <!-- Konten -->
-            <div class="col-lg-10" style="background-color: rgb(253, 244, 227); height: 100vh; padding-top: 5rem; overflow-y: auto;">
+            <div class="col-lg-10 content-area" style="background-color: rgb(253, 244, 227); height: 100vh; padding-top: 5rem; overflow-y: auto;">
                 @yield('operator')
             </div>
         </div>

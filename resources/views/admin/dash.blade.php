@@ -35,7 +35,7 @@
                 <div class="col-md-3">
                     <img src="{{ asset('storage/'.$sch->ft_kepsek) }}" 
                         alt="" 
-                        class="img-fluid rounded-5 border border-4 border-dark">
+                        class="img-fluid rounded-5 border border-4 border-dark mx-auto d-flex align-content-center">
                 </div>
                 <div class="col-md-9">
                     <div class="d-flex flex-column">

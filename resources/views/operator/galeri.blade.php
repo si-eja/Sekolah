@@ -10,126 +10,149 @@
                 border-right: 2px solid black;
                 border-bottom: 2px solid black;">
             <div class="d-flex justify-content-between p-4"
-                 style="background-color: rgb(19, 70, 134);">
+                 style="background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
                 <h3 class="text-style">Galeri Sekolah</h3>
                 <div class="d-flex gap-3">
                     <a href="{{ route('addvid') }}" class="btn btn-success">Tambah Video</a>
                     <a href="{{ route('addft') }}" class="btn btn-success">Tambah Foto</a>
                 </div>
             </div>
-            <div class="bg bg-primary">
-                <h3 style="font-weight: 700; padding: 1%; color: white;">Foto</h3>
-            </div>
-            <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 400px;">
-                @foreach ($foto as $ft)
-                <div class="row py-3 mb-2"
-                     style="border: 2px solid black">
-                    <div class="col-md-5">
-                        <img src="{{ asset('storage/galeri/foto/'.$ft->file) }}" alt="" style="height: 400px; width: 100%; object-fit: cover;">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="d-flex justify-content-between align-items-end">
-                            <h3 class="mb-0">{{ $ft->judul }}</h3>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-start">
-                            <p class="text-start">{{ $ft->keterangan }}</p>
-                        </div>
-                        <hr>
-                        <div class="d-flex flex-column gap-4">
-                            <a href="{{ route('editft', Crypt::encrypt($ft->id)) }}" class="btn btn-sm btn-primary w-100">Edit</a>
-                            <button class="btn btn-sm btn-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"
-                                    data-id="{{ Crypt::encrypt($ft->id) }}"
-                                    data-type="foto"
-                                    data-judul="{{ $ft->judul }}">
-                                Hapus Foto
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Judul</th>
+                    <th>Keterangan</th>
+                    <th>Kategori</th>
+                    <th>Detail</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                @foreach ($glr as $items)
+                <tbody>
+                <tr>
+                    <td>{{ $items->judul }}</td>
+                    <td>{{ $items->keterangan }}</td>
+                    <td>{{ $items->kategori }}</td>
+                    <td>
+                        <button class="btn btn-info text-white"
+                                data-bs-toggle="modal"
+                                data-bs-target="#detailModal"
+                                data-judul="{{ $items->judul }}"
+                                data-keterangan="{{ $items->keterangan }}"
+                                data-kategori="{{ $items->kategori }}"
+                                data-file="{{ asset('storage/galeri/' . ($items->kategori == 'Video' ? 'video/' : 'foto/') . $items->file) }}">
+                        Detail
+                        </button>
+                    </td>
+                    <td>
+                        <a href="{{ route('editGlr', Crypt::encrypt($items->id)) }}" class="btn btn-primary">Edit</a>
+                        <button class="btn btn-danger"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-id="{{ Crypt::encrypt($items->id) }}"
+                            data-judul="{{ $items->judul }}">
+                            Hapus
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
                 @endforeach
-            </div>
-            <div class="bg bg-primary">
-                <h3 style="font-weight: 700; padding: 1%; color: white;">Video</h3>
-            </div>
-            <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 400px;">
-                @foreach ($video as $vid)
-                <div class="row py-3"
-                     style="border: 2px solid black">
-                    <div class="col-md-5">
-                        <video style="height: 400px; width: 100%; object-fit: cover;" controls>
-                            <source src="{{ asset('storage/galeri/video/'.$vid->file) }}" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="d-flex justify-content-between align-items-end">
-                            <h3 class="mb-0">{{ $vid->judul }}</h3>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-start">
-                            <p class="text-start">{{ $vid->keterangan }}</p>
-                        </div>
-                        <hr>
-                        <div class="d-flex flex-column gap-4">
-                            <a href="{{ route('editvid', Crypt::encrypt($vid->id)) }}" class="btn btn-sm btn-primary w-100">Edit</a>
-                            <button class="btn btn-sm btn-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"
-                                    data-id="{{ Crypt::encrypt($vid->id) }}"
-                                    data-type="video"
-                                    data-judul="{{ $vid->judul }}">
-                                Hapus Video
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>
+            </table>
+            <div class="p-4" style="background: linear-gradient(315deg, rgb(19, 70, 134) 0%, rgb(237, 63, 39) 50%); height: 1rem;"></div>
         </div>
     </div>
-    {{-- Modal Foto & Video --}}
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <!-- Modal Konfirmasi Hapus -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Konfirmasi Hapus</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <div class="modal-body">
-                    Apakah kamu yakin ingin menghapus <b id="itemKategori"></b> berjudul 
-                    <b id="itemJudul"></b>?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <a href="#" id="btnDelete" class="btn btn-danger">Hapus</a>
-                </div>
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah kamu yakin ingin menghapus <strong id="judulGaleri"></strong> ?</p>
+            </div>
+            <div class="modal-footer">
+                <form id="formDelete" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal detail -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailJudul" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <!-- 🟢 Judul yang akan diubah via JS -->
+                <h5 class="modal-title" id="detailJudul">Judul Default</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Keterangan:</strong></p>
+                <p id="keteranganGaleri"></p>
+
+                <div class="text-center mt-3" id="filePreview"></div>
+            </div>
             </div>
         </div>
     </div>
     <script>
-        const deleteModal = document.getElementById('deleteModal');
-        deleteModal.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget;
-        const id = button.getAttribute('data-id');
-        const kategori = button.getAttribute('data-type'); // foto / video
-        const judul = button.getAttribute('data-judul');
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteModal = document.getElementById('deleteModal');
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const judul = button.getAttribute('data-judul');
+                const keterangan = button.getAttribute('data-keterangan');
+                const kategori = button.getAttribute('data-kategori');
+                const file = button.getAttribute('data-file');
 
-        // set teks di modal
-        document.getElementById('itemKategori').textContent = kategori;
-        document.getElementById('itemJudul').textContent = judul;
+                // ubah title modal jadi nama judul galeri
+                document.getElementById('detailJudul').textContent = judul;
 
-        // set href sesuai kategori
-        let route = '';
-        if (kategori === 'foto') {
-            route = "{{ route('glrDelete', ['id' => ':id']) }}".replace(':id', id);
-        } else if (kategori === 'video') {
-            route = "{{ route('glrDelete', ['id' => ':id']) }}".replace(':id', id);
-        }
+                // set action form memakai placeholder yang diganti di JS
+                const form = document.getElementById('formDelete');
+                form.action = "{{ route('glrDelete', ['id' => ':id']) }}".replace(':id', id);
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('detailModal');
 
-        document.getElementById('btnDelete').href = route;
-    });
+            modal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const judul = button.getAttribute('data-judul');
+                const keterangan = button.getAttribute('data-keterangan');
+                const kategori = button.getAttribute('data-kategori');
+                const file = button.getAttribute('data-file');
+
+                // 🟢 Pastikan id di bawah sesuai dengan elemen di modal
+                document.getElementById('detailJudul').textContent = judul;
+                document.getElementById('keteranganGaleri').textContent = keterangan;
+
+                const filePreview = document.getElementById('filePreview');
+                filePreview.innerHTML = '';
+
+                if (kategori.toLowerCase() === 'video') {
+                const video = document.createElement('video');
+                video.src = file;
+                video.controls = true;
+                video.style.width = '100%';
+                video.style.maxHeight = '400px';
+                filePreview.appendChild(video);
+                } else {
+                const img = document.createElement('img');
+                img.src = file;
+                img.alt = judul;
+                img.style.width = '100%';
+                img.style.maxHeight = '400px';
+                img.style.objectFit = 'cover';
+                filePreview.appendChild(img);
+                }
+            });
+        });
     </script>
 @endsection

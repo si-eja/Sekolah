@@ -11,23 +11,26 @@ use Illuminate\Support\Facades\Crypt;
 
 class GaleriController extends Controller
 {
-    //
+    //operator
     public function galeri(){
         $data['sch'] = Scholl::first();
-        $data['foto'] = Galeri::where('kategori', 'Foto')->get();
-        $data['video'] = Galeri::where('kategori', 'Video')->get();
+        $data['glr'] = Galeri::all();
         return view('operator.galeri',$data);
     }
     public function addft(){
         $data['sch'] = Scholl::first();
         return view('operator.addft',$data);
     }
-    public function editft(String $id){
+    public function addvid(){
+        $data['sch'] = Scholl::first();
+        return view('operator.addvid',$data);
+    }
+    public function editGlr(String $id){
         $id = $this->decryptId($id);
 
         $data['sch'] = Scholl::first();
-        $data['foto'] = Galeri::findOrFail($id);
-        return view('operator.editft',$data);
+        $data['glr'] = Galeri::findOrFail($id);
+        return view('operator.editGlr',$data);
     }
     private function decryptId($id){
         try{
@@ -57,41 +60,15 @@ class GaleriController extends Controller
 
         return redirect()->route('galeri');
     }
-    public function ftUpdate(Request $request, String $id){
-        $id = $this->decryptId($id);
-
-        $validate = $request->validate([
-            'judul' => 'required|string',
-            'keterangan' => 'required|string',
-            'kategori' => 'required|string',
-            'tanggal' => 'required|date',
-            'file' => 'image|required|max:5084',
-        ]);
-        $foto = Galeri::find($id);
-
-        if($request->hasFile('file')){
-            if(Storage::exists('public/galeri/foto/'. $foto->file)){
-                Storage::delete('public/galeri/foto/'. $foto->file);
-            }
-
-            $image = $request->file('file');
-            $ftEdit = time()."-".$request->name.".".$image->getClientOriginalExtension();
-            $image->storeAs('public/galeri/foto/'.$ftEdit);
-            $validate['file'] = $ftEdit;
-        }
-        $foto->update($validate);
-        return redirect()->route('galeri');
-    }
     public function glrDelete(String $id){
         $id = $this->decryptId($id);
 
-        $foto = Galeri::findOrFail($id);
-        $foto->delete();
+        $galeri = Galeri::findOrFail($id);
+        if (Storage::exists('public/galeri/'.$galeri->file)) {
+            Storage::delete('public/galeri/'.$galeri->file);
+        }
+        $galeri->delete();
         return redirect()->back();
-    }
-    public function addvid(){
-        $data['sch'] = Scholl::first();
-        return view('operator.addvid',$data);
     }
     public function vidPost(Request $request){
         $validate = $request->validate([
@@ -114,36 +91,92 @@ class GaleriController extends Controller
 
         return redirect()->route('galeri');
     }
-    public function editvid(String $id){
+    public function glrUpdate(Request $request, String $id){
         $id = $this->decryptId($id);
-
-        $data['sch'] = Scholl::first();
-        $data['video'] = Galeri::findOrFail($id);
-        return view('operator.editVid',$data);
-    }
-    public function vidUpdate(Request $request, String $id){
-        $id = $this->decryptId($id);
+        $galeri = Galeri::findOrFail($id);
 
         $validate = $request->validate([
             'judul' => 'required|string',
             'keterangan' => 'required|string',
             'kategori' => 'required|string',
             'tanggal' => 'required|date',
-            'file' => 'required|mimes:mp4,avi,mov,wmv|max:204800',
+            'file' => $galeri->kategori === 'Video'
+                    ? 'nullable|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:51200' // max 50MB
+                    : 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
+
+        // Tentukan folder sesuai kategori
+        $folder = $galeri->kategori === 'Video' ? 'galeri/video' : 'galeri/foto';
         $video = Galeri::find($id);
 
-        if($request->hasFile('file')){
-            if(Storage::exists('public/galeri/video/'. $video->file)){
-                Storage::delete('public/galeri/video/'. $video->file);
+        if ($request->hasFile('file')) {
+        // hapus file lama kalau ada
+            if (Storage::exists('public/' . $folder . '/' . $galeri->file)) {
+                Storage::delete('public/' . $folder . '/' . $galeri->file);
             }
 
-            $image = $request->file('file');
-            $vidEdit = time()."-".$request->name.".".$image->getClientOriginalExtension();
-            $image->storeAs('public/galeri/video/'.$vidEdit);
-            $validate['file'] = $vidEdit;
+            // simpan file baru
+            $file = $request->file('file');
+            $namaFile = time() . '-' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
+                        . '.' . $file->getClientOriginalExtension();
+
+            Storage::makeDirectory('public/' . $folder);
+            $file->storeAs('public/' . $folder, $namaFile);
+
+            $validate['file'] = $namaFile;
         }
-        $video->update($validate);
+        $video->update([
+            'judul' => $request->judul,
+            'keterangan' => $request->keterangan,
+            'kategori' => $request->kategori,
+            'tanggal' => $request->tanggal,
+            'file' => $validate['file'] ?? $galeri->file,
+        ]);
         return redirect()->route('galeri');
     }
+    //===
+    //admin
+    // public function glrUpdateA(Request $request, String $id){
+    //     $id = $this->decryptId($id);
+    //     $galeri = Galeri::findOrFail($id);
+
+    //     $validate = $request->validate([
+    //         'judul' => 'required|string',
+    //         'keterangan' => 'required|string',
+    //         'kategori' => 'required|string',
+    //         'tanggal' => 'required|date',
+    //         'file' => $galeri->kategori === 'Video'
+    //                 ? 'nullable|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:51200' // max 50MB
+    //                 : 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+    //     ]);
+
+    //     // Tentukan folder sesuai kategori
+    //     $folder = $galeri->kategori === 'Video' ? 'galeri/video' : 'galeri/foto';
+    //     $video = Galeri::find($id);
+
+    //     if ($request->hasFile('file')) {
+    //     // hapus file lama kalau ada
+    //         if (Storage::exists('public/' . $folder . '/' . $galeri->file)) {
+    //             Storage::delete('public/' . $folder . '/' . $galeri->file);
+    //         }
+
+    //         // simpan file baru
+    //         $file = $request->file('file');
+    //         $namaFile = time() . '-' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
+    //                     . '.' . $file->getClientOriginalExtension();
+
+    //         Storage::makeDirectory('public/' . $folder);
+    //         $file->storeAs('public/' . $folder, $namaFile);
+
+    //         $validate['file'] = $namaFile;
+    //     }
+    //     $video->update([
+    //         'judul' => $request->judul,
+    //         'keterangan' => $request->keterangan,
+    //         'kategori' => $request->kategori,
+    //         'tanggal' => $request->tanggal,
+    //         'file' => $validate['file'] ?? $galeri->file,
+    //     ]);
+    //     return redirect()->route('galeriA');
+    // }
 }
