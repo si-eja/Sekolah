@@ -11,6 +11,7 @@ class Scholl extends Model
         'kepsek',
         'ft_kepsek',
         'foto',
-        'visi_misi'
+        'visi_misi',
+        'deskripsi'
     ];
 }

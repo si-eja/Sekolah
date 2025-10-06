@@ -12,29 +12,59 @@
             <div class="d-flex justify-content-between p-4"
                  style="background-color: rgb(19, 70, 134);">
                 <h3 class="text-style">Berita Sekolah</h3>
-                <a href="#" class="btn btn-success">Tambah berita</a>
+                <a href="{{ route('addbrt') }}" class="btn btn-success">Tambah berita</a>
             </div>
-            <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 360px;">
-                <div class="row py-3"
-                     style="border: 2px solid black">
-                    <img src="{{ asset('storage/ujian.jpg') }}" alt="" class="col-md-2">
-                    <div class="col-md-8 d-flex flex-column">
-                        <h3>Ujian dimulai pada 12 juni 2026</h3>
-                        <p>Pelaksanaan ujian akhir semester di sekolah berlangsung dengan tertib dan lancar.
-                           Para siswa tampak serius mengerjakan soal yang diberikan, sementara pengawas
-                           memastikan jalannya ujian sesuai aturan. Ujian ini menjadi salah satu tolak ukur
-                           capaian belajar siswa selama satu semester sekaligus evaluasi bagi sekolah dalam
-                           meningkatkan kualitas pendidikan.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0"><i class="fa-solid fa-user"></i> : opr123</h6>
-                            <h6 class="mb-0">5 juni 2026</h6>
+            <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 50vh;">
+                @foreach ($berita as $items)
+                <div class="rounded-5 row bg bg-white">
+                    <div class="col-md-2 p-0">
+                        <img src="{{ asset('storage/berita/'.$items->gambar) }}" alt="" class="rounded-start-5 w-100 h-100 object-fit-cover">
+                    </div>
+                    <div class="col-md-7">
+                        <h3 class="pt-3">{{ $items->judul }}</h3>
+                        <hr>
+                        <p>{{ $items->isi }}</p>
+                    </div>
+                    <div class="col-md-3 py-4">
+                        <a href="{{ route('editbrt', Crypt::encrypt($items->id)) }}" class="btn btn-primary w-100 mb-2">Edit</a>
+                        <!-- Tombol buka modal hapus -->
+                        <button type="button" class="btn btn-danger w-100"
+                            data-bs-toggle="modal"
+                            data-bs-target="#hapusModal{{ $items->id }}">
+                            Hapus
+                        </button>
+                        <hr>
+                        <div class="d-flex justify-content-between px-2">
+                            <div class="">
+                                <i class="fa-solid fa-user"></i> {{ $items->user->name }}
+                            </div>
+                            <div class="">
+                                <i class="fa-solid fa-calendar-days"></i> {{ $items->tanggal }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex flex-column gap-4">
-                        <a href="#" class="btn btn-sm btn-primary w-100">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger w-100">Hapus</a>
+                </div>
+                <div class="modal fade" id="hapusModal{{ $items->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $items->id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-4 shadow">
+                            <div class="modal-header bg-danger text-white rounded-top-4">
+                                <h5 class="modal-title" id="hapusModalLabel{{ $items->id }}">
+                                    Konfirmasi Hapus Berita
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah kamu yakin ingin menghapus berita <strong>"{{ $items->judul }}"</strong>?
+                                <br><small class="text-muted">Tindakan ini tidak bisa dibatalkan.</small>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <a href="{{ route('brtDelete', Crypt::encrypt($items->id)) }}" class="btn btn-danger">Ya, Hapus</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
             <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>
         </div>

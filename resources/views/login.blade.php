@@ -2,16 +2,15 @@
 @section('login')
     <div style="background-color: rgb(253, 244, 227);
             height: fit-content;
-            margin-top: 7%;
             width: 100%;
-            padding: 10% 0%;">
+            padding: 8% 0%;">
         <div class="d-flex justify-content-center ">
             <form action="{{ route('authLogin') }}" method="post" style="width: 50%;">
                 @csrf
                 <div class="row rounded-3"
-                     style="background-color: rgb(19, 70, 134);
+                     style="background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;;
                         padding: 10% 2%;">
-                    <div class="col-12 col-md-6 d-flex flex-column text-center">
+                    <div class="col-12 col-md-6 d-flex flex-column text-center align-items-center">
                         <h1>
                             <img src="{{ asset('storage/'.$sch->logo) }}" alt="" style="height: 250px; width: 250px;">
                         </h1>
@@ -22,7 +21,7 @@
                         <input type="text" name="username" id="username" class="form-control mb-2">
                         <h4 class="text-style">Password</h4>
                         <input type="password" name="password" id="password" class="form-control">
-                        <button class="btn text-color" type="submit" style="width: 100%; background-color: rgb(237, 63, 39); margin-top: 17%;">Masuk</button>
+                        <button class="btn btn-style text-color fw-bold border-2 border-black" type="submit" style="width: 100%; background-color: rgb(253, 244, 227); margin-top: 17%;">Masuk</button>
                     </div>
                 </div>
             </form>

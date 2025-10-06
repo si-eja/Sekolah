@@ -22,10 +22,6 @@
             width: 100%;">
         <div class="container py-4" 
              style="height: fit-content;">
-            <h2 class="text-dark fw-bold text-center">
-                Kepala sekolah saat ini
-            </h2>
-            <hr>
             <form action="{{ route('postsch', Crypt::encrypt($sch->id)) }}" method="post" enctype="multipart/form-data" class="row">
                 <div class="col-md-3">
                     <img src="{{ asset('storage/'.$edit->ft_kepsek) }}" 

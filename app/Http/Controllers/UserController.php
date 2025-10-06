@@ -24,10 +24,19 @@ class UserController extends Controller
         $data['galeri'] = Galeri::all();
         $data['siswa'] = Siswa::all();
         $data['guru'] = Guru::all();
+        $data['user'] = User::all();
+        $data['admin'] = User::where('role','admin')->get();
         return view('admin.dash',$data);
     }
     public function operator(){
         $data['sch'] = Scholl::first();
+        $data['berita'] = Berita::all();
+        $data['ekskul'] = Ekskul::all();
+        $data['galeri'] = Galeri::all();
+        $data['siswa'] = Siswa::all();
+        $data['guru'] = Guru::all();
+        $data['user'] = User::all();
+        $data['operator'] = User::where('role','operator')->get();
         return view('operator.dash',$data);
     }
     public function login(){
@@ -112,6 +121,7 @@ class UserController extends Controller
                 return redirect()->route('login')->with('error','Please Login Again');
             }
         }
+        return redirect()->back()->with('loginError', 'Login failed');
     }
     public function userDelete(String $id){
         $id = $this->decryptId($id);

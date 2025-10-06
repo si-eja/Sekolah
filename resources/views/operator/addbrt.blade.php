@@ -1,10 +1,5 @@
 @extends('operator.temp')
 @section('operator')
-    <img src="{{ asset('storage/berita.jpg') }}" alt=""
-         style="width: 100%;
-            height: 400px;
-            object-fit: cover;border-left: 2px solid black;
-            border-right: 2px solid black;">
     <div class="conteinter-fluid"
          style="height: fit-content;
             background-color: rgb(253, 244, 227);">
@@ -17,30 +12,50 @@
             <div class="d-flex justify-content-between p-4"
                  style="background-color: rgb(19, 70, 134);">
                 <h3 class="text-style">Tambah Berita</h3>
-                <a href="#" class="btn btn-success">Tambah berita</a>
             </div>
-            <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 360px;">
-                <div class="row py-3"
-                     style="border: 2px solid black">
-                    <img src="{{ asset('storage/ujian.jpg') }}" alt="" class="col-md-2">
-                    <div class="col-md-8 d-flex flex-column">
-                        <h3>Ujian dimulai pada 12 juni 2026</h3>
-                        <p>Pelaksanaan ujian akhir semester di sekolah berlangsung dengan tertib dan lancar.
-                           Para siswa tampak serius mengerjakan soal yang diberikan, sementara pengawas
-                           memastikan jalannya ujian sesuai aturan. Ujian ini menjadi salah satu tolak ukur
-                           capaian belajar siswa selama satu semester sekaligus evaluasi bagi sekolah dalam
-                           meningkatkan kualitas pendidikan.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0"><i class="fa-solid fa-user"></i> : opr123</h6>
-                            <h6 class="mb-0">5 juni 2026</h6>
-                        </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Validate Invalid</strong>
+                    <ul>
+                        @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{ route('brtPost') }}" method="post" enctype="multipart/form-data" class="p-2">
+                @csrf
+                <div class="mb-3 row">
+                    <div class="col-md-4">
+                        <img src="{{ asset('storage/addfoto.jpg') }}" alt="" id="preview" 
+                        class="w-100 h-100 object-fit-cover">
                     </div>
-                    <div class="col-md-2 d-flex flex-column gap-4">
-                        <a href="#" class="btn btn-sm btn-primary w-100">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger w-100">Hapus</a>
+                    <div class="col-md-8">
+                        <label for="nama" class="form-label">Judul Berita</label>
+                        <input type="text" name="judul" id="nama" class="form-control">
+                        <label for="tanggal" class="form-label">Tanggal Upload</label>
+                        <input type="date" name="tanggal" id="tanggal" class="form-control" value="{{ old('tanggal', date('Y-m-d')) }}" readonly>
+                        <label for="gambar" class="form-label">Foto</label>
+                        <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*" onchange="previewImage(event)">
+                        <label for="isi" class="form-label">Isi Berita</label>
+                        <textarea name="isi" id="isi" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
-            </div>
+                <input type="submit" value="Tambah" class="w-100 btn btn-success">
+            </form>
+            <script>
+                function previewImage(event) {
+                    const input = event.target;
+                    const reader = new FileReader();
+                    reader.onload = function(){
+                        const preview = document.getElementById('preview');
+                        preview.src = reader.result;
+                    };
+                    if(input.files[0]){
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
             <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>
         </div>
     </div>

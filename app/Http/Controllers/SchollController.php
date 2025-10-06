@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
+use App\Models\Ekskul;
+use App\Models\Guru;
 use App\Models\Scholl;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
@@ -13,7 +17,25 @@ class SchollController extends Controller
     //
     public function index(){
         $data['temp'] = Scholl::first();
+        $data['ekskul'] = Ekskul::all();
         return view('home.home', $data);
+    }
+    public function info(String $id){
+        $id = $this->decryptId($id);
+        
+        $data['temp'] = Scholl::first();
+        $data['guru'] = Guru::all();
+        $data['siswa'] = Siswa::all();
+        $data['ekskul'] = Ekskul::all();
+        $data['berita'] = Berita::all();
+        return view('home.info', $data);
+    }
+    public function eksInfo(String $id){
+        $id = $this->decryptId($id);
+        
+        $data['temp'] = Scholl::first();
+        $data['ekskul'] = Ekskul::findOrFail($id);
+        return view('home.eksInfo', $data);
     }
     private function decryptId($id){
         try{
@@ -75,7 +97,7 @@ class SchollController extends Controller
             'ft_kepsek' => $ftKepsek,
             'foto' => $fotoSekolah,
             'visi_misi' => $request->visi_misi,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi,
         ]);
 
         return redirect()->route('admin')->with('success', 'Data sekolah berhasil diperbarui.');

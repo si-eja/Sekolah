@@ -15,6 +15,6 @@ class Berita extends Model
         'id_user',
     ];
     public function user(){
-        return $this->belongsTo(User::class, 'id_user', 'id_user');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

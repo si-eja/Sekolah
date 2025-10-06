@@ -8,32 +8,59 @@
     <link rel="shortcut icon" href="{{ asset('storage/'.$sch->logo) }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('Boostrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('aos-master/dist/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('mySwiper/swiper.min.css') }}">
 </head>
 <style>
-    .text-style {
+    .hovera{
+        color: white;
+    }
+    .gepeng {
         font-weight: bold;
-        text-shadow: 3px 3px 4px rgb(237, 63, 39);
-        color: rgb(254, 178, 26);
+        display: inline-block;
+        transform: scaleX(1.5);
+        transform: scaley(1.4);
+        margin-left: 5px;
+        margin-right: 10px;
+        text-shadow: 2px 2px 10px black;
+    }
+    .lonjong {
+        font-weight: bold;
+        display: inline-block;
+        transform: scaleY(1.5);
+        text-shadow: 2px 2px 10px black;
+        padding-top: 5px;
+        margin-right: 40px;
+    }
+    .text-style{
+        color: white;
+        text-shadow: 1px 1px 10px black;
     }
     .text-color{
-        color: rgb(253, 244, 227);
-        text-shadow: 3px 3px 4px rgb(19, 70, 134);
+        color: black;
+        text-shadow: 1px 1px 10px whitesmoke;
+    }
+    .btn-style:hover{
+        background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
+        border: 2px solid black;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px whitesmoke;
+        color: whitesmoke
     }
 </style>
 <body>
-    <nav class="navbar navbar-expand-sm fixed-top" style="background-color: rgb(19, 70, 134);">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark"
+         style="background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;">
         <div class="container py-3">
-            <li class="nav-item list-unstyled">
-                <a class="nav-link active d-flex align-items-center" href="/admin" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-                    <img src="{{ asset('storage/'.$sch->logo) }}" alt="" style="height: 80px; width: 80px;">
-                    <h2 class="text-style" style="font-weight: bolder;">{{ $sch->nama }}</h2>
-                </a>
-            </li>
+            <a class="nav-link active d-flex align-items-center" href="/" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                <img src="{{ asset('storage/'.$sch->logo) }}" alt="" style="height: 70px; width: 70px;">
+                <h5 class="hovera lonjong" style="font-weight: bolder;">{{ $sch->nama }}</h5>
+            </a>
         </div>
     </nav>
     @yield('login')
     <footer class="container-fluid" 
-            style="height: fit-content; background-color: rgb(19, 70, 134);">
+            style="height: fit-content; background: linear-gradient(135deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
         <div class="container py-4">
             <div class="row"
                  style="margin-bottom: 3%;">
@@ -47,11 +74,6 @@
                             <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>{{ $sch->alamat }}</p>
                             <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>{{ $sch->kontak }}</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-2">
-                    <div id="maps" style="width: 100%; height: 280px; overflow: auto; white-space: nowrap">
-                        <img src="{{ asset('storage/'.$sch->ft_lokasi) }}" alt="" style="display: block; max-width: none; max-height: none;">
                     </div>
                 </div>
                 <div class="col-12 col-md-4 d-flex justify-content-center">
@@ -86,18 +108,5 @@
 </body>
 </html>
 <script src="{{ asset('Boostrap/js/bootstrap.bundle.min.js') }}"></script>
-<script>
-    window.addEventListener('scroll', function () {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 200) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-    window.addEventListener("load", function() {
-        let container = document.getElementById("maps");
-        container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
-    });
-</script>
+<script src="{{ asset('aos-master/dist/aos.js') }}"></script>
+<script src="{{ asset('mySwiper/swiper.min.js') }}"></script>

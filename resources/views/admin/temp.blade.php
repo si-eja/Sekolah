@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
     <style>
         .text-style{
-            color: rgb(254, 178, 26);
+            color: white;
             font-weight: bold;
-            text-shadow: 3px 3px 4px rgb(237, 63, 39);
+            text-shadow: 3px 3px 4px black;
             text-decoration: none;
         }
         .text-color{
@@ -114,9 +114,9 @@
                             <h6>Layanan</h6>
                         </button>
                         <div class="collapse ps-3" id="layananCollapse">
-                            <a href="#" class="text-style d-block mb-2">Berita</a>
-                            <a href="#" class="text-style d-block mb-2">Galeri</a>
-                            <a href="#" class="text-style d-block">Ekstrakurikuler</a>
+                            <a href="{{ route('beritaA') }}" class="text-style d-block mb-2">Berita</a>
+                            <a href="{{ route('galeriA') }}" class="text-style d-block mb-2">Galeri</a>
+                            <a href="{{ route('ekskulA') }}" class="text-style d-block">Ekstrakurikuler</a>
                         </div>
                     </div>
 

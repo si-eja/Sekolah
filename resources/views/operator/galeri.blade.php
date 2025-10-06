@@ -23,7 +23,7 @@
                     <th>Judul</th>
                     <th>Keterangan</th>
                     <th>Kategori</th>
-                    <th>Detail</th>
+                    <th>Tanggal Upload</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -33,6 +33,7 @@
                     <td>{{ $items->judul }}</td>
                     <td>{{ $items->keterangan }}</td>
                     <td>{{ $items->kategori }}</td>
+                    <td>{{ $items->tanggal }}</td>
                     <td>
                         <button class="btn btn-info text-white"
                                 data-bs-toggle="modal"
@@ -43,8 +44,6 @@
                                 data-file="{{ asset('storage/galeri/' . ($items->kategori == 'Video' ? 'video/' : 'foto/') . $items->file) }}">
                         Detail
                         </button>
-                    </td>
-                    <td>
                         <a href="{{ route('editGlr', Crypt::encrypt($items->id)) }}" class="btn btn-primary">Edit</a>
                         <button class="btn btn-danger"
                             data-bs-toggle="modal"
@@ -88,14 +87,13 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
-                <!-- 🟢 Judul yang akan diubah via JS -->
+                <!-- Judul yang akan diubah via JS -->
                 <h5 class="modal-title" id="detailJudul">Judul Default</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <p><strong>Keterangan:</strong></p>
                 <p id="keteranganGaleri"></p>
-
                 <div class="text-center mt-3" id="filePreview"></div>
             </div>
             </div>

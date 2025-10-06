@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SMPN 2 Singaparna</title>
-    <link rel="shortcut icon" href="{{ asset('asset/logo_nedusi.png') }}" type="image/x-icon">
+    <title>{{ $temp->nama }}</title>
+    <link rel="shortcut icon" href="{{ asset('storage/'.$temp->logo) }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('Boostrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('aos-master/dist/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('mySwiper/swiper.min.css') }}">
 </head>
 <style>
     .hovera{
-        color: rgb(254, 178, 26);
+        color: white;
     }
     .gepeng {
         font-weight: bold;
@@ -20,21 +22,21 @@
         transform: scaley(1.4);
         margin-left: 5px;
         margin-right: 10px;
-        text-shadow: 1px 1px 4px rgb(19, 70, 134);
+        text-shadow: 2px 2px 10px black;
     }
     .lonjong {
         font-weight: bold;
         display: inline-block;
         transform: scaleY(1.5);
+        text-shadow: 2px 2px 10px black;
         padding-top: 5px;
         margin-right: 40px;
-        text-shadow: 1px 1px 4px rgb(19, 70, 134);
     }
     #navbar {
         background-color: transparent;
     }
     #navbar.scrolled {
-        background-color: rgb(19, 70, 134);
+        background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);
     }
     .navbar .dropdown-menu {    
         border-radius: 12px;
@@ -56,7 +58,7 @@
         border-radius: 8px;
         padding: 8px 15px;
         font-weight: 500;
-        color: #333;
+        color: white;
         transition: background 0.2s, color 0.2s;
     }
     .navbar .dropdown-menu .dropdown-item:hover {
@@ -64,22 +66,28 @@
         color: #fff;
     }
     .text-style{
-        color: rgb(254, 178, 26);
-        text-shadow: 3px 3px 4px rgb(237, 63, 39);
+        color: white;
+        text-shadow: 1px 1px 10px black;
     }
     .text-color{
-        color: rgb(253, 244, 227);
-        text-shadow: 3px 3px 4px rgb(19, 70, 134);
+        color: black;
+        text-shadow: 1px 1px 10px whitesmoke;
     }
-    .text-model{
-        color: rgb(19, 70, 134);
-        text-shadow: 3px 3px 4px rgb(254, 178, 26);
+    .btn-style{
+        background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
+        border: 2px solid whitesmoke;
+    }
+    .btn-style:hover{
+        background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
+        border: 2px solid whitesmoke;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
     .navbar-toggler {
-    background-color: black !important; /* background hitam */
-    border: none;
-    padding: 6px 10px;
-    border-radius: 5px;
+        background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important; /* background hitam */
+        border: 1px solid whitesmoke;
+        padding: 6px 10px;
+        border-radius: 5px;
     }
 
     /* Styling umum untuk nav item */
@@ -88,18 +96,22 @@
     }
 
     .navbar-nav .nav-link {
-        color: rgb(254, 178, 26) !important;
+        color: white !important;
         font-weight: 500;
+        display: inline-block;
+        transform: scaleY(1.5);
+        text-shadow: 2px 2px 10px black;
         padding: 8px 12px;
         border-radius: 6px;
     }
 
     .navbar-nav .nav-link:hover {
-        background-color: #333;
+        background-color: black;
+        border: 2px solid white;
     }
 
     .dropdown-menu {
-        background-color: #111 !important;
+        background-color: black !important;
         border: none;
         border-radius: 6px;
     }
@@ -110,13 +122,13 @@
     }
 
     .dropdown-item:hover {
-        background-color: #333 !important;
+        background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
     }
 
     /* Mobile khusus */
     @media (max-width: 991px) {
         .navbar-collapse.show {
-            background-color: black !important;
+            background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
@@ -133,14 +145,19 @@
             border-radius: 6px;
             margin-top: 5px;
         }
+        .content-area {
+            /* kasih jarak biar gak ketutup navbar */
+            background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
+            height: 14%;
+        }
     }
 </style>
 <body>
-    <nav id="navbar" class="navbar navbar-expand-sm navbar-dark fixed-top">
+    <nav id="navbar" class="navbar navbar-expand-sm navbar-dark fixed-top" data-aos="fade-down">
     <div class="container py-3">
         <li class="nav-item list-unstyled">
             <a class="nav-link active d-flex align-items-center" href="/" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-                <img src="{{ asset('storage/'.$temp->logo) }}" alt="" style="height: 80px; width: 80px;">
+                <img src="{{ asset('storage/'.$temp->logo) }}" alt="" style="height: 70px; width: 70px;">
                 <h5 class="hovera lonjong" style="font-weight: bolder;">{{ $temp->nama }}</h5>
             </a>
         </li>
@@ -150,15 +167,14 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle hovera gepeng" href="#" role="button" data-bs-toggle="dropdown">Profile</a>
+                    <a class="nav-link dropdown-toggle hovera gepeng" href="#" role="button" data-bs-toggle="dropdown">Sekolah</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Sekolah</a></li>
-                        <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('info', Crypt::encrypt($temp->id)) }}">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Galeri</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link hovera gepeng" href="#ekstra">Ekstrakurikuler</a>
+                    <a class="nav-link hovera gepeng" href="{{ route('home') }}#ekstra">Ekstrakurikuler</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link hovera gepeng" href="#berita">Berita</a>
@@ -169,7 +185,7 @@
     </nav>
     @yield('content')
     <footer class="container-fluid" 
-            style="height: fit-content; background-color: rgb(19, 70, 134);">
+            style="height: fit-content; background: linear-gradient(135deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
         <div class="container py-4">
             <div class="row"
                  style="margin-bottom: 3%;">
@@ -183,11 +199,6 @@
                             <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>{{ $temp->alamat }}</p>
                             <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>{{ $temp->kontak }}</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-2">
-                    <div id="maps" style="width: 100%; height: 280px; overflow: auto; white-space: nowrap">
-                        <img src="{{ asset('storage/'.$temp->ft_lokasi) }}" alt="" style="display: block; max-width: none; max-height: none;">
                     </div>
                 </div>
                 <div class="col-12 col-md-4 d-flex justify-content-center">
@@ -222,19 +233,16 @@
 </body>
 </html>
 <script src="{{ asset('Boostrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('aos-master/dist/aos.js') }}"></script>
+<script src="{{ asset('mySwiper/swiper.min.js') }}"></script>
 <script>
     window.addEventListener('scroll', function () {
         const navbar = document.getElementById('navbar');
-        if (window.scrollY > 200) {
+        if (window.scrollY > 170) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
-    window.addEventListener("load", function() {
-        let container = document.getElementById("maps");
-        container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
     });
     const navbarCollapse = document.getElementById('collapsibleNavbar');
 
@@ -249,5 +257,31 @@
     navbarCollapse.style.backgroundColor = "transparent";
     navbarCollapse.style.padding = "0";
     navbarCollapse.style.boxShadow = "none";
+    });
+    AOS.init();
+    //Script infinity Corousel
+    const totalSlides = {{ $ekskul->count() }}; // hitung total data dari database
+
+    const swiper = new Swiper('.mySwiper', {
+        loop: totalSlides > 1, // kalau cuma 1 data, jangan loop
+        slidesPerView: totalSlides < 3 ? totalSlides : 3, // max 3
+        spaceBetween: 20,
+        autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+        },
+        pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        },
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+        0: { slidesPerView: totalSlides < 1 ? 1 : Math.min(totalSlides, 1) },
+        768: { slidesPerView: totalSlides < 2 ? totalSlides : 2 },
+        992: { slidesPerView: totalSlides < 3 ? totalSlides : 3 },
+        }
     });
 </script>

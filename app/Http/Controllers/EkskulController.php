@@ -11,11 +11,16 @@ use Illuminate\Support\Facades\Storage;
 
 class EkskulController extends Controller
 {
-    //
+    //operator
     public function Ekskul(){
         $data['sch'] = Scholl::first();
         $data['ekskul'] = Ekskul::all();
         return view('operator.ekstra',$data);
+    }
+    public function EkskulA(){
+        $data['sch'] = Scholl::first();
+        $data['ekskul'] = Ekskul::all();
+        return view('admin.ekstra',$data);
     }
     public function addEks(){
         $data['sch'] = Scholl::first();
@@ -83,5 +88,59 @@ class EkskulController extends Controller
         $ekskul = Ekskul::findOrFail($id);
         $ekskul->delete();
         return redirect()->back();
+    }
+    //admin
+    public function addEksA(){
+        $data['sch'] = Scholl::first();
+        return view('admin.layanan.addeks',$data);
+    }
+    public function editEksA(String $id){
+        $id = $this->decryptId($id);
+        
+        $data['sch'] = Scholl::first();
+        $data['ekskul'] = Ekskul::findOrFail($id);
+        return view('admin.layanan.editeks',$data);
+    }
+    public function eksPostA(Request $request){
+        $validate = $request->validate([
+            'nama_ekskul' => 'required|string|max:40',
+            'pembina' => 'required|string|max:40',
+            'jadwal' => 'required|string|max:40',
+            'deksripsi' => 'required|string',
+            'gambar' => 'image|required|max:5084',
+        ]);
+        $image = $request->file('gambar');
+        $ftEkskul = time()."-".$request->name.".".$image->getClientOriginalExtension();
+        $image->storeAs('public/ekskul/'.$ftEkskul);
+
+        $validate['gambar'] = $ftEkskul;
+        Ekskul::create($validate);
+
+        return redirect()->route('ekskulA');
+    }
+    public function eksUpdateA(Request $request, String $id){
+        $id = $this->decryptId($id);
+
+        $validate = $request->validate([
+            'nama_ekskul' => 'required|string|max:40',
+            'pembina' => 'required|string|max:40',
+            'jadwal' => 'required|string|max:40',
+            'deksripsi' => 'required|string',
+            'gambar' => 'image|required|max:5084',
+        ]);
+        $guru = Ekskul::find($id);
+
+        if($request->hasFile('gambar')){
+            if(Storage::exists('public/ekskul/'. $guru->foto)){
+                Storage::delete('public/ekskul/'. $guru->foto);
+            }
+
+            $image = $request->file('gambar');
+            $ftEkskul = time()."-".$request->name.".".$image->getClientOriginalExtension();
+            $image->storeAs('public/ekskul/'.$ftEkskul);
+            $validate['gambar'] = $ftEkskul;
+        }
+        $guru->update($validate);
+        return redirect()->route('ekskulA');
     }
 }

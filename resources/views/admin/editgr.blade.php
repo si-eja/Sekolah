@@ -10,7 +10,7 @@
                 border-right: 2px solid black;
                 border-bottom: 2px solid black;">
             <div class="d-flex justify-content-between p-4"
-                 style="background-color: rgb(19, 70, 134);">
+                 style="background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
                 <h3 class="text-style">Edit guru</h3>
             </div>
             @if ($errors->any())
@@ -56,7 +56,7 @@
                     }
                 }
             </script>
-            <div class="p-4" style="background-color: rgb(19, 70, 134); height: 1rem;"></div>
+            <div class="p-4" style="background: linear-gradient(315deg, rgb(19, 70, 134) 0%, rgb(237, 63, 39) 50%); height: 1rem;"></div>
         </div>
     </div>
 @endsection

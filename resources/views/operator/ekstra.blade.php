@@ -16,20 +16,52 @@
             </div>
             <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 360px;">
                 @foreach ($ekskul as $eks)
-                <div class="row py-3"
-                     style="border: 2px solid black">
-                    <img src="{{ asset('storage/ekskul/'.$eks->gambar) }}" alt="" class="col-md-2">
-                    <div class="col-md-8 d-flex flex-column">
-                        <h3>{{ $eks->nama_ekskul }}</h3>
+                <div class="rounded-5 row bg bg-white">
+                    <div class="col-md-2 p-0">
+                        <img src="{{ asset('storage/ekskul/'.$eks->gambar) }}" alt="" class="rounded-start-5 w-100 h-100">
+                    </div>
+                    <div class="col-md-7">
+                        <h3 class="pt-3">{{ $eks->nama_ekskul }}</h3>
+                        <hr>
                         <p>{{ $eks->deksripsi }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0">Pembian : {{ $eks->pembina }}</h6>
-                            <h6 class="mb-0">Jadwal : {{ $eks->jadwal }}</h6>
+                    </div>
+                    <div class="col-md-3 py-4">
+                        <a href="{{ route('editEks',Crypt::encrypt($eks->id)) }}" class="btn btn-primary w-100 mb-2">Edit</a>
+                        {{-- <a href="{{ route('eksDelete',Crypt::encrypt($eks->id)) }}" class="btn btn-danger w-100">Hapus</a> --}}
+                        <button type="button" class="btn btn-danger w-100"
+                            data-bs-toggle="modal"
+                            data-bs-target="#hapusModal{{ $eks->id }}">
+                            Hapus
+                        </button>
+                        <hr>
+                        <div class="d-flex justify-content-between px-2">
+                            <div class="">
+                                <i class="fa-solid fa-user"></i> {{ $eks->pembina }}
+                            </div>
+                            <div class="">
+                                <i class="fa-solid fa-calendar-days"></i> {{ $eks->jadwal }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex flex-column gap-4">
-                        <a href="{{ route('editEks',Crypt::encrypt($eks->id)) }}" class="btn btn-sm btn-primary w-100">Edit</a>
-                        <a href="{{ route('eksDelete',Crypt::encrypt($eks->id)) }}" class="btn btn-sm btn-danger w-100">Hapus</a>
+                </div>
+                <div class="modal fade" id="hapusModal{{ $eks->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $eks->id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-4 shadow">
+                            <div class="modal-header bg-danger text-white rounded-top-4">
+                                <h5 class="modal-title" id="hapusModalLabel{{ $eks->id }}">
+                                    Konfirmasi Hapus Ekstrakurikuler
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah kamu yakin ingin menghapus Ekstrakurikuler <strong>"{{ $eks->nama_ekskul }}"</strong>?
+                                <br><small class="text-muted">Tindakan ini tidak bisa dibatalkan.</small>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <a href="{{ route('glrDelete', Crypt::encrypt($eks->id)) }}" class="btn btn-danger">Ya, Hapus</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @endforeach

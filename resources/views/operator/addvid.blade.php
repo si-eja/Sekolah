@@ -29,7 +29,7 @@
                         <div class="row py-3">
                             <div class="col-md-6">
                                 <video id="videoPreview" style="margin-top: 10px; width: 100%; max-width: 500px;" controls>
-                                    <source src="{{ asset('storage/glrVid.mp4') }}" type="video/mp4">
+                                    <source src="{{ asset('storage/galeri/video') }}" type="video/mp4">
                                 </video>
                             </div>
                             <div class="col-md-6">
