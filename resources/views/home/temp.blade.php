@@ -78,10 +78,10 @@
         border: 2px solid whitesmoke;
     }
     .btn-style:hover{
-        background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
+        background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
         border: 2px solid whitesmoke;
         transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 15px whitesmoke;
     }
     .navbar-toggler {
         background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important; /* background hitam */
@@ -174,10 +174,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link hovera gepeng" href="{{ route('home') }}#ekstra">Ekstrakurikuler</a>
+                    <a class="nav-link hovera gepeng" href="/#ekstra">Ekstrakurikuler</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link hovera gepeng" href="#berita">Berita</a>
+                    <a class="nav-link hovera gepeng" href="/#berita">Berita</a>
                 </li>
             </ul>
         </div>
@@ -259,29 +259,4 @@
     navbarCollapse.style.boxShadow = "none";
     });
     AOS.init();
-    //Script infinity Corousel
-    const totalSlides = {{ $ekskul->count() }}; // hitung total data dari database
-
-    const swiper = new Swiper('.mySwiper', {
-        loop: totalSlides > 1, // kalau cuma 1 data, jangan loop
-        slidesPerView: totalSlides < 3 ? totalSlides : 3, // max 3
-        spaceBetween: 20,
-        autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-        },
-        pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        },
-        navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-        0: { slidesPerView: totalSlides < 1 ? 1 : Math.min(totalSlides, 1) },
-        768: { slidesPerView: totalSlides < 2 ? totalSlides : 2 },
-        992: { slidesPerView: totalSlides < 3 ? totalSlides : 3 },
-        }
-    });
 </script>

@@ -18,6 +18,7 @@ class SchollController extends Controller
     public function index(){
         $data['temp'] = Scholl::first();
         $data['ekskul'] = Ekskul::all();
+        $data['berita'] = Berita::latest()->take(3)->get();
         return view('home.home', $data);
     }
     public function info(String $id){
@@ -30,12 +31,29 @@ class SchollController extends Controller
         $data['berita'] = Berita::all();
         return view('home.info', $data);
     }
+    public function berita(){
+        $data['temp'] = Scholl::first();
+        $data['berita'] = Berita::all();
+        return view('home.berita', $data);
+    }
+    public function ekskul(){
+        $data['temp'] = Scholl::first();
+        $data['ekskul'] = Ekskul::all();
+        return view('home.ekskul', $data);
+    }
     public function eksInfo(String $id){
         $id = $this->decryptId($id);
         
         $data['temp'] = Scholl::first();
         $data['ekskul'] = Ekskul::findOrFail($id);
         return view('home.eksInfo', $data);
+    }
+    public function brtInfo(String $id){
+        $id = $this->decryptId($id);
+        
+        $data['temp'] = Scholl::first();
+        $data['berita'] = Berita::findOrFail($id);
+        return view('home.brtInfo', $data);
     }
     private function decryptId($id){
         try{

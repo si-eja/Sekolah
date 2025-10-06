@@ -12,7 +12,7 @@
         style="height: fit-content;">
             <div class="text-white d-flex justify-content-around row g-3">
                 <div class="col-6 col-md-3">
-                    <div class="bg bg-info p-3 rounded-3 h-100">
+                    <div class="bg bg-warning p-3 rounded-3 h-100 shadow">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-column align-items-start">
                                 <h1>{{ $ekskul->count() }}</h1>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="bg bg-primary p-3 rounded-3 h-100">
+                    <div class="bg bg-warning p-3 rounded-3 h-100 shadow">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-column align-items-start">
                                 <h1>{{ $galeri->count() }}</h1>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="bg bg-warning p-3 rounded-3 h-100">
+                    <div class="bg bg-warning p-3 rounded-3 h-100 shadow">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-column align-items-start">
                                 <h1>{{ $berita->count() }}</h1>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="bg bg-danger p-3 rounded-3 h-100">
+                    <div class="bg bg-warning p-3 rounded-3 h-100 shadow">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-column align-items-start">
                                 <h1>{{ $user->count() }}</h1>
@@ -57,43 +57,47 @@
                 </div>
             </div>
             <hr>
-            <div class="row mt-5 d-flex justify-content-around g-4">
-                <div class="bg bg-white rounded-3 col-md-6 p-4 mt-1" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(0, 132, 255);">
-                    <h3>Rekan {{ Auth::user()->role }}</h3>
-                    <hr>
-                    <div class="overflow-auto h-75">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Username</th>
-                            </tr>
-                            </thead>
-                            @foreach ($admin as $item)
-                            <tbody>
-                            <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->username }}</td>
-                            </tr>
-                            </tbody>
-                            @endforeach
-                        </table>
+            <div class="row mt-5 d-flex justify-content-around g-3">
+                <div class="col-md-6 col-12">
+                    <div class="bg bg-white rounded-3 p-4 mt-1 h-100" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(0, 132, 255);">
+                        <h3>Rekan {{ Auth::user()->role }}</h3>
+                        <hr>
+                        <div class="overflow-auto h-75">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Username</th>
+                                </tr>
+                                </thead>
+                                @foreach ($admin as $item)
+                                <tbody>
+                                <tr>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->username }}</td>
+                                </tr>
+                                </tbody>
+                                @endforeach
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="bg bg-white rounded-3 col-md-6 mt-1" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(249, 65, 65);">
-                    <div class="d-flex flex-column py-3 text-white">
-                        <div class="w-100 rounded-2 p-3 bg-info d-flex justify-content-between align-items-center">
-                            <div class="d-flex flex-column align-items-start">
-                                <h3>Jumlah Siswa: {{ $siswa->count() }}</h3>
+                <div class="col-md-6 col-12">
+                    <div class="bg bg-white rounded-3 mt-1 h-100 p-4" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(249, 65, 65);">
+                        <div class="d-flex flex-column py-3 text-white">
+                            <div class="w-100 rounded-2 p-3 bg-warning d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-column align-items-start">
+                                    <h3>Jumlah Siswa: {{ $siswa->count() }}</h3>
+                                </div>
+                                <i class="fs-1 fa-solid fa-user-graduate opacity-75"></i>
                             </div>
-                            <i class="fs-1 fa-solid fa-user-graduate opacity-75"></i>
-                        </div>
-                        <hr>
-                        <div class="w-100 rounded-2 p-3 bg-primary d-flex justify-content-between align-items-center">
-                            <div class="d-flex flex-column align-items-start">
-                                <h3>Jumlah Guru : {{ $guru->count() }}</h3>
+                            <hr>
+                            <div class="w-100 rounded-2 p-3 bg-warning d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-column align-items-start">
+                                    <h3>Jumlah Guru : {{ $guru->count() }}</h3>
+                                </div>
+                                <i class="fs-1 fa-solid fa-person-chalkboard opacity-75"></i>
                             </div>
-                            <i class="fs-1 fa-solid fa-person-chalkboard opacity-75"></i>
                         </div>
                     </div>
                 </div>

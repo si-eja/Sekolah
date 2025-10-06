@@ -1,6 +1,6 @@
 @extends('operator.temp')
 @section('operator')
-    <div class="container-fluid py-4"
+    <div class="container-fluid p-4"
          style="background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
         <h3 class="text-style">Dashboard</h3>
     </div>
@@ -57,43 +57,47 @@
             </div>
         </div>
         <hr>
-        <div class="row mt-5">
-            <div class="bg bg-white rounded-3 col-md-6 p-4" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(0, 132, 255)">
-                <h3>Rekan {{ Auth::user()->role }}</h3>
-                <hr>
-                <div class="overflow-auto h-75">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
-                        @foreach ($operator as $item)
-                        <tbody>
-                        <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->username }}</td>
-                        </tr>
-                        </tbody>
-                        @endforeach
-                    </table>
+        <div class="row mt-5 d-flex justify-content-around g-3">
+            <div class="col-md-6 col-12">
+                <div class="bg bg-white rounded-3 p-4 mt-1 h-100" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(0, 132, 255);">
+                    <h3>Rekan {{ Auth::user()->role }}</h3>
+                    <hr>
+                    <div class="overflow-auto h-75">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Username</th>
+                            </tr>
+                            </thead>
+                            @foreach ($operator as $item)
+                            <tbody>
+                            <tr>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->username }}</td>
+                            </tr>
+                            </tbody>
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="bg bg-white rounded-3 col-md-6" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(249, 65, 65)">
-                <div class="d-flex flex-column py-3 text-white">
-                    <div class="w-100 rounded-2 p-3 bg-info d-flex justify-content-between align-items-center">
-                        <div class="d-flex flex-column align-items-start">
-                            <h3>Jumlah Siswa: {{ $siswa->count() }}</h3>
+            <div class="col-md-6 col-12">
+                <div class="bg bg-white rounded-3 mt-1 h-100 p-4" style="box-shadow: 2px 2px 4px black; border-top: 4px solid rgb(249, 65, 65);">
+                    <div class="d-flex flex-column py-3 text-white">
+                        <div class="w-100 rounded-2 p-3 bg-warning d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-column align-items-start">
+                                <h3>Jumlah Siswa: {{ $siswa->count() }}</h3>
+                            </div>
+                            <i class="fs-1 fa-solid fa-user-graduate opacity-75"></i>
                         </div>
-                        <i class="fs-1 fa-solid fa-user-graduate opacity-75"></i>
-                    </div>
-                    <hr>
-                    <div class="w-100 rounded-2 p-3 bg-primary d-flex justify-content-between align-items-center">
-                        <div class="d-flex flex-column align-items-start">
-                            <h3>Jumlah Guru : {{ $guru->count() }}</h3>
+                        <hr>
+                        <div class="w-100 rounded-2 p-3 bg-warning d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-column align-items-start">
+                                <h3>Jumlah Guru : {{ $guru->count() }}</h3>
+                            </div>
+                            <i class="fs-1 fa-solid fa-person-chalkboard opacity-75"></i>
                         </div>
-                        <i class="fs-1 fa-solid fa-person-chalkboard opacity-75"></i>
                     </div>
                 </div>
             </div>

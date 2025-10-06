@@ -14,9 +14,9 @@
                 <h3 class="text-style">Ekstrakurikuler</h3>
                 <a href="{{ route('addeksA') }}" class="btn btn-success">Tambahan</a>
             </div>
-            <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 360px;">
+            <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 50vh;">
                 @foreach ($ekskul as $eks)
-                <div class="rounded-5 row bg bg-white">
+                <div class="rounded-5 row bg bg-white my-1">
                     <div class="col-md-2 p-0">
                         <img src="{{ asset('storage/ekskul/'.$eks->gambar) }}" alt="" class="rounded-start-5 w-100 h-100">
                     </div>

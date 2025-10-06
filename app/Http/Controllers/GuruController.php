@@ -7,6 +7,7 @@ use App\Models\Scholl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Nette\Utils\Strings;
 
@@ -16,7 +17,11 @@ class GuruController extends Controller
     public function guru(){
         $data['sch'] = Scholl::first();
         $data['guru'] = Guru::all();
-        return view('admin.guru',$data);
+        if(Auth::user()->role == 'admin'){
+            return view('admin.guru',$data);
+        }else{
+            return view('operator.guru',$data);
+        }
     }
     public function addgr(){
         $data['sch'] = Scholl::first();

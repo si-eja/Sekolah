@@ -77,31 +77,59 @@
             <h3 class="text-style">Ekstrakurikuler</h3>
             <hr class="text-white">
             <div class="swiper mySwiper" data-aos="fade-right">
-            <div class="swiper-wrapper">
-                @foreach ($ekskul as $item)
-                <div class="swiper-slide d-flex justify-content-center">
-                <div class="rounded-5 border border-dark border-2 bg-dark" style="box-shadow: 1px 1px 4px whitesmoke; width: 210px;">
-                    <img src="{{ asset('storage/ekskul/'.$item->gambar) }}" alt="" class="rounded-top-5 col-12">
-                    <h6 class="fw-bold m-2 text-style text-center">{{ $item->nama_ekskul }}</h6>
-                    <div class="p-3">
-                    <a href="{{ route('eksInfo', Crypt::encrypt($item->id)) }}" 
-                        class="btn text-white w-100 btn-style"
-                        style="background: linear-gradient(135deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
-                        Selengkapnya
-                    </a>
-                    </div>
+                <div class="swiper-wrapper">
+                    @foreach ($ekskul as $item)
+                    <div class="swiper-slide d-flex justify-content-center">
+                        <div class="rounded-5 border border-dark border-2 bg-dark" style="box-shadow: 1px 1px 4px whitesmoke; width: 210px;">
+                            <img src="{{ asset('storage/ekskul/'.$item->gambar) }}" alt="" class="rounded-top-5 col-12">
+                            <h6 class="fw-bold m-2 text-style text-center">{{ $item->nama_ekskul }}</h6>
+                            <div class="p-3">
+                            <a href="{{ route('eksInfo', Crypt::encrypt($item->id)) }}" 
+                                class="btn text-white w-100 btn-style"
+                                style="background: linear-gradient(135deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
+                                Selengkapnya
+                            </a>
+                            </div>
+                        </div>
+                        </div>
+                        @endforeach
                 </div>
-                </div>
-                @endforeach
-            </div>
+                <script>
+                    //Script infinity Corousel
+                    const totalSlides = {{ $ekskul->count() }}; // hitung total data dari database
 
-            <!-- Tombol navigasi -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+                    const swiper = new Swiper('.mySwiper', {
+                        loop: totalSlides > 1, // kalau cuma 1 data, jangan loop
+                        slidesPerView: totalSlides < 3 ? totalSlides : 3, // max 3
+                        spaceBetween: 20,
+                        autoplay: {
+                        delay: 2500,
+                        disableOnInteraction: false,
+                        },
+                        pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                        },
+                        navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                        },
+                        breakpoints: {
+                        0: { slidesPerView: totalSlides < 1 ? 1 : Math.min(totalSlides, 1) },
+                        768: { slidesPerView: totalSlides < 2 ? totalSlides : 2 },
+                        992: { slidesPerView: totalSlides < 3 ? totalSlides : 3 },
+                        }
+                    });
+                </script>
+                <!-- Tombol navigasi -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
 
-            <!-- Pagination (opsional) -->
-            <div class="swiper-pagination"></div>
+                <!-- Pagination (opsional) -->
+                <div class="swiper-pagination"></div>
             </div>
+            <hr class="text-white">
+            <a href="{{ route('ekskulS') }}" class="w-100 btn btn-style fw-bold text-white p-3">Ekstrakurikuler Lainnya</a>
         </div>
     </div>
     <div class="container-fluid py-4"
@@ -110,7 +138,24 @@
             height: fit-content;">
         <div class="container text-center">
             <h3 class="text-color">Berita sekolah</h3>
-
+            <hr class="text-dark">
+            <div class="d-flex justify-content-center row" data-aos="fade-left">
+                @foreach ($berita as $item)
+                <div class="col-12 col-md-4">
+                    <div class="bg bg-dark rounded-2" style="box-shadow: 1px 1px 6px black">
+                        <img src="{{ asset('storage/berita/'.$item->gambar) }}" alt="" class="object-fit-cover rounded-top-2" style="width: 100%; height: 240px;">
+                        <h5 class="text-white fw-bolder text-start p-3">{{ $item->judul }}</h5>
+                        <div class="d-flex justify-content-between px-3 text-white">
+                            <p><i class="fa-solid fa-user"></i> {{ $item->user->name }}</p>
+                            <p><i class="fa-solid fa-calendar-days"></i> {{ $item->tanggal }}</p>
+                        </div>
+                        <a href="{{ route('brtInfo', Crypt::encrypt($item->id)) }}" class="btn w-100 btn-style border-0 fw-bolder text-white">Selengkapnya</a>
+                    </div>
+                </div>  
+                @endforeach
+            </div>
+            <hr class="text-dark">
+            <a href="{{ route('beritaS') }}" class="w-100 btn btn-style fw-bold text-white p-3">Berita Lainnya</a>
         </div>
     </div>
 @endsection

@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome/css/all.min.css') }}">
     <style>
         .text-style{
-            color: rgb(254, 178, 26);
+            color: white;
             font-weight: bold;
-            text-shadow: 3px 3px 4px rgb(237, 63, 39);
+            text-shadow: 3px 3px 4px black;
             text-decoration: none;
         }
         /* Sidebar tetap biru di desktop */
@@ -91,7 +91,14 @@
                         <a href="{{ route('operator') }}" class="text-style">
                             <h6>Dashboard</h6>
                         </a>
-
+                        <!-- Warga Sekolah -->
+                        <button class="btn btn-link text-style p-0" data-bs-toggle="collapse" data-bs-target="#wrgskCollapse" aria-expanded="false" aria-controls="layananCollapse">
+                            <h6>Warga Sekolah</h6>
+                        </button>
+                        <div class="collapse ps-3" id="wrgskCollapse">
+                            <a href="{{ route('guruO') }}" class="text-style d-block mb-2">Guru</a>
+                            <a href="{{ route('siswaO') }}" class="text-style d-block mb-2">Siswa</a>
+                        </div>
                         <!-- Layanan -->
                         <button class="btn btn-link text-style p-0" data-bs-toggle="collapse" data-bs-target="#layananCollapse" aria-expanded="false" aria-controls="layananCollapse">
                             <h6>Layanan</h6>

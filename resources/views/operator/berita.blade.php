@@ -16,7 +16,7 @@
             </div>
             <div class="py-2 px-4" style="overflow-x: hidden; overflow-y: scroll; height: 50vh;">
                 @foreach ($berita as $items)
-                <div class="rounded-5 row bg bg-white">
+                <div class="rounded-5 row bg bg-white my-1">
                     <div class="col-md-2 p-0">
                         <img src="{{ asset('storage/berita/'.$items->gambar) }}" alt="" class="rounded-start-5 w-100 h-100 object-fit-cover">
                     </div>

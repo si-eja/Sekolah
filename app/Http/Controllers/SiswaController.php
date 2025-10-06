@@ -6,6 +6,7 @@ use App\Models\Scholl;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class SiswaController extends Controller
@@ -14,7 +15,11 @@ class SiswaController extends Controller
     public function siswa(){
         $data['sch'] = Scholl::first();
         $data['siswa'] = Siswa::all();
-        return view('admin.siswa',$data);
+        if(Auth::user()->role == 'admin'){
+            return view('admin.siswa',$data);
+        }else{
+            return view('operator.siswa',$data);
+        }
     }
     public function addsis(){
         $data['sch'] = Scholl::first();

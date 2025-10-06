@@ -11,8 +11,11 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [SchollController::class,'index'])->name('home');
+Route::get('/semua/berita', [SchollController::class,'berita'])->name('beritaS');
+Route::get('/semua/ekskul', [SchollController::class,'ekskul'])->name('ekskulS');
 Route::get('/profile/{id}', [SchollController::class,'info'])->name('info');
 Route::get('/ekskul/{id}', [SchollController::class,'eksInfo'])->name('eksInfo');
+Route::get('/berita/{id}', [SchollController::class,'brtInfo'])->name('brtInfo');
 
 Route::middleware(['admin'])->group(function () {
     //admmin
@@ -77,7 +80,10 @@ Route::middleware(['admin'])->group(function () {
 Route::middleware(['operator'])->group(function () {
     //operator
     Route::get('/operator', [UserController::class,'operator'])->name('operator');
-    
+    //warga sekolah
+    Route::get('/operator/siswa',[SiswaController::class,'siswa'])->name('siswaO');
+    Route::get('/operator/guru',[GuruController::class,'guru'])->name('guruO');
+
     //berita
     Route::get('/operator/berita', [BeritaController::class,'berita'])->name('berita');
     Route::get('/operator/tambah/berita', [BeritaController::class,'addbrt'])->name('addbrt');
