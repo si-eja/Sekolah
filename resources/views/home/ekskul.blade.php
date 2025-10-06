@@ -43,7 +43,21 @@
                 </div>
                 <div class="col-12 col-md-8">
                     @foreach ($ekskul as $item)
-
+                    <div class="row bg bg-dark rounded-3 mb-4">
+                        <div class="col-12 col-md-3 rounded-start-3">
+                            <img src="{{ asset('storage/ekskul/'.$item->gambar) }}" alt="" class="w-100 h-100 object-fit-fill">
+                        </div>
+                        <div class="col-12 col-md-9 text-style p-3">
+                            <h4>{{ $item->nama_ekskul }}</h4>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <h6>{{ $item->pembina }}</h6>
+                                <h6>{{ $item->jadwal }}</h6>
+                            </div>
+                            <hr>
+                            <a href="{{ route('eksInfo',Crypt::encrypt($item->id)) }}" class="btn btn-style w-100 text-white">Selengkapnya</a>
+                        </div>
+                    </div>
                     @endforeach
                 </div>
             </div>

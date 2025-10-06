@@ -83,18 +83,26 @@
         transform: translateY(-5px);
         box-shadow: 0 8px 15px whitesmoke;
     }
+    .btn-model{
+        background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
+        border: 2px solid whitesmoke;
+    }
+    .btn-model:hover{
+        background: black !important;
+        border: 2px solid whitesmoke;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px black;
+    }
     .navbar-toggler {
         background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important; /* background hitam */
         border: 1px solid whitesmoke;
         padding: 6px 10px;
         border-radius: 5px;
     }
-
     /* Styling umum untuk nav item */
     .navbar-nav .nav-item {
         margin: 6px 0;
     }
-
     .navbar-nav .nav-link {
         color: white !important;
         font-weight: 500;
@@ -153,6 +161,9 @@
         .navbar-nav .nav-link:hover {
             background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);
             border: 2px solid white;
+        }
+        .berita{
+            height: 20rem !important;
         }
     }
 </style>

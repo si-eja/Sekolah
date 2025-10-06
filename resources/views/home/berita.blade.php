@@ -43,13 +43,12 @@
                 </div>
                 <div class="col-12 col-md-8">
                     @foreach ($berita as $item)
-                    <div class="d-flex flex-column justify-content-center bg bg-dark text-style rounded-3 shadow mb-4 border-2 border-black p-1">
-                        <img src="{{ asset('storage/berita/'.$item->gambar) }}" alt="" class="rounded-top-3">
-                        <h4 class="text-style m-2">{{ $item->judul }}</h4>
-                        <hr class="text-white">
-                        <div class="d-flex justify-content-between m-2">
-                            <div class="h5">{{ $item->user->name }}</div>
-                            <div class="h5">{{ $item->tanggal }}</div>
+                    <div data-aos="fade-right" class="d-flex flex-column justify-content-center bg bg-dark text-style rounded-3 shadow mb-4 border-2 border-black p-1">
+                        <img src="{{ asset('storage/berita/'.$item->gambar) }}" alt="" class="rounded-top-3 w-100 object-fit-cover berita" style="height: 35rem;">
+                        <h4 class="text-style m-3 mb-4">{{ $item->judul }}</h4>
+                        <div class="d-flex justify-content-between m-3">
+                            <div class="h5"><i class="fa-solid fa-user"></i> {{ $item->user->name }}</div>
+                            <div class="h5"><i class="fa-solid fa-calendar-days"></i> {{ $item->tanggal }}</div>
                         </div>
                         <a href="{{ route('brtInfo', Crypt::encrypt($item->id)) }}" class="btn btn-style text-style">Selengkapnya</a>
                     </div>

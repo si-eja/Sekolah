@@ -11,6 +11,8 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [SchollController::class,'index'])->name('home');
+Route::get('/semua/galeri', [SchollController::class,'galeri'])->name('galeriS');
+Route::get('/semua/guru', [SchollController::class,'guru'])->name('guruS');
 Route::get('/semua/berita', [SchollController::class,'berita'])->name('beritaS');
 Route::get('/semua/ekskul', [SchollController::class,'ekskul'])->name('ekskulS');
 Route::get('/profile/{id}', [SchollController::class,'info'])->name('info');
@@ -21,7 +23,7 @@ Route::middleware(['admin'])->group(function () {
     //admmin
     Route::get('/admin/profile/edit{id}', [SchollController::class,'editsch'])->name('editsch');
     Route::post('/admin/profile/edit{id}', [SchollController::class,'postsch'])->name('postsch');
-    
+
     //user
     Route::get('/admin', [UserController::class,'index'])->name('admin');
     Route::get('/admin/user', [UserController::class,'user'])->name('user');
@@ -30,7 +32,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/user/edit/{id}', [UserController::class,'edituser'])->name('edituser');
     Route::post('/admin/user/edit/{id}', [UserController::class,'userUpdate'])->name('userUpdate');
     Route::get('/admin/user/delete/{id}',[SiswaController::class,'userDelete'])->name('userDelete');
-    
+
     //guru
     Route::get('/admin/guru',[GuruController::class,'guru'])->name('guru');
     Route::get('/admin/guru/tambah',[GuruController::class,'addgr'])->name('addgr');
@@ -38,7 +40,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/guru/edit/{id}',[GuruController::class,'editgr'])->name('editgr');
     Route::post('/admin/guru/edit/{id}',[GuruController::class,'grUpdate'])->name('grUpdate');
     Route::get('/admin/guru/delete/{id}',[GuruController::class,'grDelete'])->name('grDelete');
-    
+
     //siswa
     Route::get('/admin/siswa',[SiswaController::class,'siswa'])->name('siswa');
     Route::get('/admin/siswa/tambah',[SiswaController::class,'addsis'])->name('addsis');
@@ -46,7 +48,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/siswa/edit/{id}',[SiswaController::class,'editsis'])->name('sisEdit');
     Route::post('/admin/siswa/edit/{id}',[SiswaController::class,'sisUpdate'])->name('sisUpdate');
     Route::get('/admin/siswa/delete/{id}',[SiswaController::class,'sisDelete'])->name('sisDelete');
-    
+
     //galeri
     Route::get('/admin/galeri', [GaleriController::class,'galeriA'])->name('galeriA');
     //foto
@@ -91,7 +93,7 @@ Route::middleware(['operator'])->group(function () {
     Route::get('/operator/edit/berita/{id}', [BeritaController::class,'editbrt'])->name('editbrt');
     Route::post('/operator/edit/berita/{id}', [BeritaController::class,'brtUpdate'])->name('brtUpdate');
     Route::get('/operator/delete/berita/{id}', [BeritaController::class,'brtDelete'])->name('brtDelete');
-    
+
     //galeri
     Route::get('/operator/galeri', [GaleriController::class,'galeri'])->name('galeri');
     //foto
@@ -105,7 +107,7 @@ Route::middleware(['operator'])->group(function () {
     Route::post('/operator/galeri/edit/{id}', [GaleriController::class,'glrUpdate'])->name('glrUpdate');
     //Delete from galeri
     Route::delete('/operator/galeri/delete/file/{id}', [GaleriController::class,'glrDelete'])->name('glrDelete');
-    
+
     //ekstra
     Route::get('/operator/ekstra', [EkskulController::class,'Ekskul'])->name('ekskul');
     Route::get('/operator/tambah/ekstra', [EkskulController::class,'addeks'])->name('addeks');

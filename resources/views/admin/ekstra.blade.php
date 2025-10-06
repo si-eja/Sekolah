@@ -18,7 +18,7 @@
                 @foreach ($ekskul as $eks)
                 <div class="rounded-5 row bg bg-white my-1">
                     <div class="col-md-2 p-0">
-                        <img src="{{ asset('storage/ekskul/'.$eks->gambar) }}" alt="" class="rounded-start-5 w-100 h-100">
+                        <img src="{{ asset('storage/ekskul/'.$eks->gambar) }}" alt="" class="rounded-start-5 w-100 h-100 object-fit-fill">
                     </div>
                     <div class="col-md-7">
                         <h3 class="pt-3">{{ $eks->nama_ekskul }}</h3>

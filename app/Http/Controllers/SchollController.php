@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use App\Models\Ekskul;
+use App\Models\Galeri;
 use App\Models\Guru;
 use App\Models\Scholl;
 use App\Models\Siswa;
@@ -18,7 +19,10 @@ class SchollController extends Controller
     public function index(){
         $data['temp'] = Scholl::first();
         $data['ekskul'] = Ekskul::all();
+        $data['guru'] = Guru::all();
         $data['berita'] = Berita::latest()->take(3)->get();
+        $data['foto'] = Galeri::latest()->where('kategori', 'Foto')->take(3)->get();
+        $data['video'] = Galeri::latest()->where('kategori', 'Video')->take(3)->get();
         return view('home.home', $data);
     }
     public function info(String $id){
@@ -35,6 +39,17 @@ class SchollController extends Controller
         $data['temp'] = Scholl::first();
         $data['berita'] = Berita::all();
         return view('home.berita', $data);
+    }
+    public function guru(){
+        $data['temp'] = Scholl::first();
+        $data['guru'] = Guru::all();
+        return view('home.guru', $data);
+    }
+    public function galeri(){
+        $data['temp'] = Scholl::first();
+        $data['foto'] = Galeri::where('kategori', 'Foto')->get();
+        $data['video'] = Galeri::where('kategori', 'Video')->get();
+        return view('home.galeri', $data);
     }
     public function ekskul(){
         $data['temp'] = Scholl::first();

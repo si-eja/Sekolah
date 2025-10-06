@@ -9,7 +9,7 @@
                         inset: 0;">
                 </div>
                 <!-- Layer konten (teks) -->
-                <div class="container" 
+                <div class="container"
                     style="padding: 8% 0%;"
                     data-aos="fade-up">
                     <h1 class="text-center text-style">Berita</h1>
@@ -17,10 +17,10 @@
             </div>
             <div class="container bg bg-white p-0 mt-3 shadow rounded-2">
                 <div class="row">
-                    <div class="col-12 col-md-3">
-                        <img src="{{ asset('storage/berita/'.$berita->gambar) }}" alt="" class="object-fit-cover w-100 h-100 rounded-start-2">
+                    <div class="col-12 col-md-5">
+                        <img src="{{ asset('storage/berita/'.$berita->gambar) }}" alt="" class="object-fit-cover w-100 rounded-start-2 berita" style="height: 35rem;">
                     </div>
-                    <div class="col-12 col-md-9 p-4">
+                    <div class="col-12 col-md-7 p-4">
                         <h4>{{ $berita->judul }}</h4>
                         <div class="d-flex justify-content-between">
                             <div class="h6 fw-medium">Di upload oleh: {{ $berita->user->name }}</div>
