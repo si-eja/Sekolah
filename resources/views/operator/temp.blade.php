@@ -24,7 +24,7 @@
             text-shadow: 2px 2px 3px black;
         }
         /* Warna teks */
-        #sidebarMenu .text-style, 
+        #sidebarMenu .text-style,
         #sidebarMenu .sidebar-title {
             color: white;
             font-weight: bold;
@@ -62,9 +62,9 @@
             <div class="d-flex align-items-center">
                 <span class="navbar-brand mb-0 h5 font-nav">Menu {{ Auth::user()->role }}</span>
             </div>
-            
+
             <!-- Button Offcanvas -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" 
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -80,11 +80,11 @@
                 <!-- body -->
                 <div class="offcanvas-body d-flex flex-column align-items-start align-items-lg-start text-white">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('storage/'.$sch->logo) }}" alt="Logo" 
+                        <img src="{{ asset('storage/'.$sch->logo) }}" alt="Logo"
                             style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
                         <span class="navbar-brand mb-0 h3 text-style">{{ $sch->nama }}</span>
                     </div>
-                    <h6 class="text-style mt-4">User: {{ Auth::user()->username }}</h6>
+                    <h6 class="text-style mt-4">User: {{ Auth::user()->name }}</h6>
                     <hr class="border-3 w-100">
                     <!-- Menu -->
                     <div class="d-flex flex-column align-items-start gap-2 mb-4 w-100 sidebar-menu">

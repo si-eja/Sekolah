@@ -8,11 +8,11 @@
             display: flex;
             justify-content: center;
             width: 100%;">
-        <div class="container py-4" 
+        <div class="container py-4"
         style="height: fit-content;">
         <div class="text-white d-flex justify-content-center row g-3">
             <div class="col-6 col-md-3">
-                <div class="bg bg-info p-3 h-100 rounded-3">
+                <div class="bg bg-warning p-3 h-100 rounded-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex flex-column align-items-start">
                             <h1>{{ $ekskul->count() }}</h1>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="bg bg-primary p-3 h-100 rounded-3">
+                <div class="bg bg-warning p-3 h-100 rounded-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex flex-column align-items-start">
                             <h1>{{ $galeri->count() }}</h1>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="bg bg-danger p-3 h-100 rounded-3">
+                <div class="bg bg-warning p-3 h-100 rounded-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex flex-column align-items-start">
                             <h1>{{ $user->count() }}</h1>
@@ -113,8 +113,8 @@
             <div class="bg bg-white rounded-3 p-3" style="box-shadow: 2px 2px 4px black">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="{{ asset('storage/'.$sch->ft_kepsek) }}" 
-                            alt="" 
+                        <img src="{{ asset('storage/'.$sch->ft_kepsek) }}"
+                            alt=""
                             class="img-fluid rounded-5 mx-auto d-flex align-content-center">
                     </div>
                     <div class="col-md-9">
