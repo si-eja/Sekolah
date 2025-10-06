@@ -17,7 +17,7 @@
                     <a href="{{ route('addftA') }}" class="btn btn-success">Tambah Foto</a>
                 </div>
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover display">
                 <thead>
                 <tr>
                     <th>Judul</th>
@@ -35,122 +35,67 @@
                     <td>{{ $items->kategori }}</td>
                     <td>{{ $items->tanggal }}</td>
                     <td>
+                        <!-- Tombol Detail -->
                         <button class="btn btn-info text-white"
-                                data-bs-toggle="modal"
-                                data-bs-target="#detailModal"
-                                data-judul="{{ $items->judul }}"
-                                data-keterangan="{{ $items->keterangan }}"
-                                data-kategori="{{ $items->kategori }}"
-                                data-file="{{ asset('storage/galeri/' . ($items->kategori == 'Video' ? 'video/' : 'foto/') . $items->file) }}">
-                        Detail
+                            data-bs-toggle="modal"
+                            data-bs-target="#detailModal{{ $items->id }}">
+                            Detail
                         </button>
                         <a href="{{ route('editGlrA', Crypt::encrypt($items->id)) }}" class="btn btn-primary">Edit</a>
+                        <!-- Tombol Hapus -->
                         <button class="btn btn-danger"
                             data-bs-toggle="modal"
-                            data-bs-target="#deleteModal"
-                            data-id="{{ Crypt::encrypt($items->id) }}"
-                            data-judul="{{ $items->judul }}">
+                            data-bs-target="#deleteModal{{ $items->id }}">
                             Hapus
                         </button>
                     </td>
                 </tr>
                 </tbody>
+                <!-- Modal Detail -->
+                <div class="modal fade" id="detailModal{{ $items->id }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{ $items->judul }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Keterangan:</strong> {{ $items->keterangan }}</p>
+                                <p><strong>Kategori:</strong> {{ $items->kategori }}</p>
+                                <p><strong>Tanggal:</strong> {{ $items->tanggal }}</p>
+
+                                @if ($items->kategori == 'Foto')
+                                    <img src="{{ asset('storage/galeri/foto/' . $items->file) }}" class="img-fluid" alt="Foto">
+                                @elseif ($items->kategori == 'Video')
+                                    <video class="w-100" controls>
+                                        <source src="{{ asset('storage/galeri/video/' . $items->file) }}" type="video/mp4">
+                                    </video>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Hapus -->
+                <div class="modal fade" id="deleteModal{{ $items->id }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger text-white">
+                                <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Yakin ingin menghapus data <strong>{{ $items->judul }}</strong>?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{{ route('glrDeleteA', Crypt::encrypt($items->id)) }}" class="btn btn-danger">Hapus</a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </table>
             <div class="p-4" style="background: linear-gradient(315deg, rgb(19, 70, 134) 0%, rgb(237, 63, 39) 50%); height: 1rem;"></div>
         </div>
     </div>
-    <!-- Modal Konfirmasi Hapus -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p>Apakah kamu yakin ingin menghapus <strong id="judulGaleri"></strong> ?</p>
-            </div>
-            <div class="modal-footer">
-                <form id="formDelete" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal detail -->
-    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailJudul" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            <div class="modal-header">
-                <!-- Judul yang akan diubah via JS -->
-                <h5 class="modal-title" id="detailJudul">Judul Default</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Keterangan:</strong></p>
-                <p id="keteranganGaleri"></p>
-                <div class="text-center mt-3" id="filePreview"></div>
-            </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const deleteModal = document.getElementById('deleteModal');
-            deleteModal.addEventListener('show.bs.modal', function (event) {
-                const button = event.relatedTarget;
-                const judul = button.getAttribute('data-judul');
-                const keterangan = button.getAttribute('data-keterangan');
-                const kategori = button.getAttribute('data-kategori');
-                const file = button.getAttribute('data-file');
-
-                // ubah title modal jadi nama judul galeri
-                document.getElementById('detailJudul').textContent = judul;
-
-                // set action form memakai placeholder yang diganti di JS
-                const form = document.getElementById('formDelete');
-                form.action = "{{ route('glrDeleteA', ['id' => ':id']) }}".replace(':id', id);
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function () {
-            const modal = document.getElementById('detailModal');
-
-            modal.addEventListener('show.bs.modal', function (event) {
-                const button = event.relatedTarget;
-                const judul = button.getAttribute('data-judul');
-                const keterangan = button.getAttribute('data-keterangan');
-                const kategori = button.getAttribute('data-kategori');
-                const file = button.getAttribute('data-file');
-
-                // 🟢 Pastikan id di bawah sesuai dengan elemen di modal
-                document.getElementById('detailJudul').textContent = judul;
-                document.getElementById('keteranganGaleri').textContent = keterangan;
-
-                const filePreview = document.getElementById('filePreview');
-                filePreview.innerHTML = '';
-
-                if (kategori.toLowerCase() === 'video') {
-                const video = document.createElement('video');
-                video.src = file;
-                video.controls = true;
-                video.style.width = '100%';
-                video.style.maxHeight = '400px';
-                filePreview.appendChild(video);
-                } else {
-                const img = document.createElement('img');
-                img.src = file;
-                img.alt = judul;
-                img.style.width = '100%';
-                img.style.maxHeight = '400px';
-                img.style.objectFit = 'cover';
-                filePreview.appendChild(img);
-                }
-            });
-        });
-    </script>
 @endsection

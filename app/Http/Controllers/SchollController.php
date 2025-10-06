@@ -23,7 +23,7 @@ class SchollController extends Controller
     }
     public function info(String $id){
         $id = $this->decryptId($id);
-        
+
         $data['temp'] = Scholl::first();
         $data['guru'] = Guru::all();
         $data['siswa'] = Siswa::all();
@@ -38,19 +38,19 @@ class SchollController extends Controller
     }
     public function ekskul(){
         $data['temp'] = Scholl::first();
-        $data['ekskul'] = Ekskul::all();
+        $data['ekskul'] = Ekskul::latest()->take(5)->get();
         return view('home.ekskul', $data);
     }
     public function eksInfo(String $id){
         $id = $this->decryptId($id);
-        
+
         $data['temp'] = Scholl::first();
         $data['ekskul'] = Ekskul::findOrFail($id);
         return view('home.eksInfo', $data);
     }
     public function brtInfo(String $id){
         $id = $this->decryptId($id);
-        
+
         $data['temp'] = Scholl::first();
         $data['berita'] = Berita::findOrFail($id);
         return view('home.brtInfo', $data);

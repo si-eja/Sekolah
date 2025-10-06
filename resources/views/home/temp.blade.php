@@ -38,7 +38,7 @@
     #navbar.scrolled {
         background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);
     }
-    .navbar .dropdown-menu {    
+    .navbar .dropdown-menu {
         border-radius: 12px;
         padding: 10px;
         background: rgba(255, 255, 255, 0.95);
@@ -106,7 +106,7 @@
     }
 
     .navbar-nav .nav-link:hover {
-        background-color: black;
+        background: black;
         border: 2px solid white;
     }
 
@@ -128,7 +128,7 @@
     /* Mobile khusus */
     @media (max-width: 991px) {
         .navbar-collapse.show {
-            background: linear-gradient(45deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
+            background-color: black !important;
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
@@ -140,8 +140,8 @@
         }
 
         .dropdown-menu {
-            background-color: #111 !important;
-            border: none;
+            background-color: black !important;
+            border: 2px solid white;
             border-radius: 6px;
             margin-top: 5px;
         }
@@ -149,6 +149,10 @@
             /* kasih jarak biar gak ketutup navbar */
             background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%) !important;
             height: 14%;
+        }
+        .navbar-nav .nav-link:hover {
+            background: linear-gradient(315deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);
+            border: 2px solid white;
         }
     }
 </style>
@@ -184,14 +188,14 @@
     </div>
     </nav>
     @yield('content')
-    <footer class="container-fluid" 
+    <footer class="container-fluid"
             style="height: fit-content; background: linear-gradient(135deg, rgb(237, 63, 39) 0%, rgb(19, 70, 134) 90%);">
         <div class="container py-4">
             <div class="row"
                  style="margin-bottom: 3%;">
                 <div class="col-12 col-md-5 d-flex justify-content-center mb-2">
                     <div class="d-flex gap-2">
-                        <img src="{{ asset('storage/'.$temp->logo) }}" alt="" 
+                        <img src="{{ asset('storage/'.$temp->logo) }}" alt=""
                              style="height: 180px; width: 180px;">
                         <div class="text-style">
                             <h3>{{ $temp->nama }}</h3>

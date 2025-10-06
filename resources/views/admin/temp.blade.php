@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{{ asset('Boostrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
+    {{-- DataTables & jQuery --}}
+    <!-- <link href="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.bootstrap5.css" rel="stylesheet"> -->
     <style>
         .text-style{
             color: white;
@@ -119,7 +124,6 @@
                             <a href="{{ route('ekskulA') }}" class="text-style d-block">Ekstrakurikuler</a>
                         </div>
                     </div>
-
                     <hr class="border-3 w-100">
                     <a href="{{ route('authlogout') }}" class="btn w-100 btn-danger text-center">Logout</a>
                 </div>
@@ -135,3 +139,12 @@
 </html>
 <script src="{{ asset('Boostrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
+<script src="{{ asset('DataTables/datatables.js') }}"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.bootstrap5.js"></script> -->

@@ -59,7 +59,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/galeri/edit/{id}', [GaleriController::class,'editGlrA'])->name('editGlrA');
     Route::post('/admin/galeri/edit/{id}', [GaleriController::class,'glrUpdateA'])->name('glrUpdateA');
     //delete foto/video
-    Route::delete('/admin/galeri/delete/file/{id}', [GaleriController::class,'glrDelete'])->name('glrDeleteA');
+    Route::get('/admin/galeri/delete/file/{id}', [GaleriController::class,'glrDelete'])->name('glrDeleteA');
 
     //berita
     Route::get('/admin/berita', [BeritaController::class,'beritaA'])->name('beritaA');
